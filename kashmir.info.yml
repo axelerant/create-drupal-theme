@@ -1,0 +1,30 @@
+name: Kashmir
+description: A theme with modern tooling.
+type: theme
+core: 8.x
+base theme: stable
+
+regions:
+  header: Header
+  content: Content
+  sidebar: Sidebar
+  footer: Footer
+
+libraries:
+  - kashmir/normalize
+# component-libraries:
+#   atoms:
+#     paths:
+#       - components/_patterns/00-atoms
+#   molecules:
+#     paths:
+#       - components/_patterns/01-molecules
+#   organisms:
+#     paths:
+#       - components/_patterns/02-organisms
+#   templates:
+#     paths:
+#       - components/_patterns/03-templates
+#   pages:
+#     paths:
+#       - components/_patterns/04-pages

@@ -1,0 +1,19 @@
+{
+  "plugins": ["prettier", "@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
+  "extends": ["prettier", "plugin:@typescript-eslint/recommended"],
+  "rules": {
+    "prettier/prettier": ["error"],
+    "@typescript-eslint/indent": "off",
+    "@typescript-eslint/no-var-requires": [
+      "off",
+      { "devDependencies": ["gulpfile.ts"] }
+    ],
+    "@typescript-eslint/explicit-function-return-type": [
+      "off",
+      {
+        "devDependencies": ["gulpfile.ts", "gulp-tasks/*.ts"]
+      }
+    ]
+  }
+}

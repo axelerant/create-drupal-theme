@@ -1,0 +1,5 @@
+reset:
+  version: VERSION
+  css:
+    base:
+      dist/css/normalize.css: {}

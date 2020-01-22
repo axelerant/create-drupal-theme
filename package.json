@@ -1,0 +1,44 @@
+{
+  "name": "kashmir",
+  "scripts": {},
+  "devDependencies": {
+    "@types/autoprefixer": "^9.6.1",
+    "@types/gulp": "^4.0.6",
+    "@types/gulp-sass": "^4.0.0",
+    "@types/jquery": "^3.3.31",
+    "@types/node": "^13.1.8",
+    "@typescript-eslint/eslint-plugin": "^2.17.0",
+    "@typescript-eslint/parser": "^2.17.0",
+    "autoprefixer": "^9.7.4",
+    "breakpoint-sass": "^2.7.1",
+    "browser-sync": "^2.26.7",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "gulp": "^4.0.2",
+    "gulp-eslint": "^6.0.0",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-postcss": "^8.0.0",
+    "gulp-prettier": "^2.3.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sass-glob": "^1.1.0",
+    "gulp-stylelint": "^11.0.0",
+    "gulp-svgstore": "^7.0.1",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
+    "sass-toolkit": "^2.10.2",
+    "stylelint": "^13.0.0",
+    "stylelint-config-standard": "^19.0.0",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged --pattern \"**/*.*(js|jsx|ts|tsx)\""
+    }
+  },
+  "dependencies": {
+    "husky": "^4.2.0"
+  }
+}
