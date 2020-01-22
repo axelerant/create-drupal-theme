@@ -25,8 +25,9 @@
     "gulp-stylelint": "^11.0.0",
     "gulp-svgstore": "^7.0.1",
     "gulp-typescript": "^6.0.0-alpha.1",
+    "husky": "^4.2.0",
+    "lint-staged": "^10.0.1",
     "prettier": "^1.19.1",
-    "pretty-quick": "^2.0.1",
     "sass-toolkit": "^2.10.2",
     "stylelint": "^13.0.0",
     "stylelint-config-standard": "^19.0.0",
@@ -35,10 +36,11 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged --pattern \"**/*.*(js|jsx|ts|tsx)\""
+      "pre-commit": "lint-staged"
     }
   },
-  "dependencies": {
-    "husky": "^4.2.0"
+  "lint-staged": {
+    "*.scss": ["gulp prettier"],
+    "*.ts": ["gulp prettier"]
   }
 }
