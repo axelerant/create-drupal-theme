@@ -29,7 +29,7 @@
     "lint-staged": "^10.0.3",
     "prettier": "^1.19.1",
     "sass-toolkit": "^2.10.2",
-    "stylelint": "^13.0.0",
+    "stylelint": "^13.1.0",
     "stylelint-config-standard": "^19.0.0",
     "ts-node": "^8.6.2",
     "typescript": "^3.7.5"
