@@ -8,7 +8,7 @@
     "@types/jquery": "^3.3.31",
     "@types/node": "^13.5.0",
     "@typescript-eslint/eslint-plugin": "^2.18.0",
-    "@typescript-eslint/parser": "^2.17.0",
+    "@typescript-eslint/parser": "^2.19.2",
     "autoprefixer": "^9.7.4",
     "breakpoint-sass": "^2.7.1",
     "browser-sync": "^2.26.7",
