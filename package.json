@@ -7,7 +7,7 @@
     "@types/gulp-sass": "^4.0.0",
     "@types/jquery": "^3.3.33",
     "@types/node": "^13.5.0",
-    "@typescript-eslint/eslint-plugin": "^2.18.0",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
     "@typescript-eslint/parser": "^2.23.0",
     "autoprefixer": "^9.7.4",
     "breakpoint-sass": "^2.7.1",
