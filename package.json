@@ -26,7 +26,7 @@
     "gulp-svgstore": "^7.0.1",
     "gulp-typescript": "^6.0.0-alpha.1",
     "husky": "^4.2.3",
-    "lint-staged": "^10.0.3",
+    "lint-staged": "^10.0.8",
     "prettier": "^1.19.1",
     "sass-toolkit": "^2.10.2",
     "stylelint": "^13.0.0",
