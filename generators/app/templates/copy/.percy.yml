@@ -1,0 +1,10 @@
+version: 1
+snapshot:
+  widths:
+    - 320
+    - 1024
+    - 1440
+agent:
+  asset-discovery:
+    allowed-hostnames:
+      - fonts.googleapis.com

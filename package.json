@@ -1,0 +1,81 @@
+{
+  "name": "generator-kashmir",
+  "version": "0.1.1",
+  "description": "Generate Kashmir theme",
+  "homepage": "https://github.com/axelerant/kashmir",
+  "author": {
+    "name": "Bassam Ismail",
+    "email": "skippednote@gmail.com",
+    "url": "https://skippednote.dev"
+  },
+  "files": [
+    "generators"
+  ],
+  "main": "generators/index.js",
+  "keywords": [
+    "drupal",
+    "theme",
+    "yeoman-generator"
+  ],
+  "devDependencies": {
+    "yeoman-test": "^3.0.0",
+    "yeoman-assert": "^3.1.1",
+    "coveralls": "^3.1.0",
+    "eslint": "^7.6.0",
+    "prettier": "^2.0.5",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-config-xo": "^0.32.1",
+    "jest": "^26.2.2"
+  },
+  "engines": {
+    "npm": ">= 4.0.0"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "yeoman-generator": "^4.11.0",
+    "yosay": "^2.0.2"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "eslintConfig": {
+    "extends": [
+      "xo",
+      "prettier"
+    ],
+    "env": {
+      "jest": true,
+      "node": true
+    },
+    "rules": {
+      "prettier/prettier": "error"
+    },
+    "plugins": [
+      "prettier"
+    ]
+  },
+  "scripts": {
+    "pretest": "eslint .",
+    "test": "jest"
+  },
+  "repository": "skippednote/generator-kashmir",
+  "license": "MIT"
+}
