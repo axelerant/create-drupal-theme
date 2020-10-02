@@ -4,7 +4,7 @@ const gulpIf = require('gulp-if');
 
 module.exports = (gulp, config) => {
   gulp.task('lint:scss', () =>
-    gulp.src(config.scss.source).pipe(stylelint(config.stylelint.options)),
+    gulp.src(config.scss.all).pipe(stylelint(config.stylelint.options)),
   );
 
   gulp.task('lint:ts', () =>
