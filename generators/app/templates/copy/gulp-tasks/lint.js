@@ -14,5 +14,8 @@ module.exports = (gulp, config) => {
       .pipe(gulpIf(process.env.CI === 'true', eslint.failOnError())),
   );
 
-  gulp.task('lint', gulp.parallel('lint:scss', 'lint:ts'));
+  gulp.task(
+    'lint',
+    gulp.series('prettier', gulp.parallel('lint:scss', 'lint:ts')),
+  );
 };

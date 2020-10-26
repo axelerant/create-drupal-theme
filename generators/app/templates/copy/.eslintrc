@@ -8,12 +8,12 @@
     "@typescript-eslint/indent": "off",
     "@typescript-eslint/no-var-requires": [
       "off",
-      { "devDependencies": ["gulpfile.ts"] }
+      { "devDependencies": ["gulpfile.js"] }
     ],
     "@typescript-eslint/explicit-function-return-type": [
       "off",
       {
-        "devDependencies": ["gulpfile.ts", "gulp-tasks/*.ts"]
+        "devDependencies": ["gulpfile.js", "gulp-tasks/*.js"]
       }
     ]
   }
