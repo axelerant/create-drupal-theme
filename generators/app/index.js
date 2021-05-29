@@ -95,9 +95,9 @@ module.exports = class extends Generator {
     }
 
     if (rtl) {
-      this.rtlValue = `const rtl = require("postcss-rtl");
+      this.rtlValue = `const rtl = require("postcss-rtlcss");
 postCSSOptions.push(rtl())`;
-      this.deps.push("postcss-rtl");
+      this.deps.push("postcss-rtlcss");
     }
 
     this.fs.copyTpl(
