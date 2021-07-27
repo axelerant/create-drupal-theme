@@ -1,16 +1,16 @@
-"use strict";
-const path = require("path");
-const assert = require("yeoman-assert");
-const helpers = require("yeoman-test");
+'use strict';
+const path = require('path');
+const assert = require('yeoman-assert');
+const helpers = require('yeoman-test');
 
-describe("generator-kashmir:app", () => {
+describe('generator-kashmir:app', () => {
   beforeAll(() =>
     helpers
-      .run(path.join(__dirname, "../generators/app"))
-      .withPrompts({ someAnswer: true })
+      .run(path.join(__dirname, '../generators/app'))
+      .withPrompts({ someAnswer: true }),
   );
 
-  it("creates files", () => {
-    assert.file(["dummyfile.txt"]);
+  it('creates files', () => {
+    assert.file(['dummyfile.txt']);
   });
 });
