@@ -31,10 +31,4 @@ module.exports = {
       failOnError: process.env.CI === 'true',
     },
   },
-  browserSync: {
-    proxy: null,
-    open: true,
-    xip: false,
-    logConnections: false,
-  },
 };
