@@ -3,12 +3,14 @@ updates:
   - package-ecosystem: npm
     directory: '/'
     schedule:
-      interval: daily
+      interval: weekly
+    target-branch: 'v2'
   - package-ecosystem: npm
     directory: '/generators/app/templates/copy/'
     schedule:
-      interval: daily
+      interval: weekly
+    target-branch: 'v2'
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
-      interval: 'daily'
+      interval: weekly
