@@ -7,9 +7,10 @@ module.exports = class extends Generator {
     super(args, opts);
     this.deps = [];
     this.rtlValue = "";
+    this.env.options.nodePackageManager = 'yarn';
   }
 
-  async prompting() {
+  prompting() {
     this.log(yosay(`Welcome fellow ${chalk.blue("Drupaler")}!`));
 
     const prompts = [
@@ -40,7 +41,7 @@ module.exports = class extends Generator {
     });
   }
 
-  writing() {
+  async writing() {
     const { name, cypress, lighthouse, rtl } = this.props;
     this.fs.copy(
       this.templatePath("copy/**"),
@@ -84,7 +85,7 @@ module.exports = class extends Generator {
         }
       );
 
-      this.deps.push(...["cypress", "@percy/cypress"]);
+      await this.addDevDependencies(['cypress', '@percy/cypress']);
     }
 
     if (lighthouse) {
@@ -97,7 +98,7 @@ module.exports = class extends Generator {
     if (rtl) {
       this.rtlValue = `const rtl = require("postcss-rtlcss");
 postCSSOptions.push(rtl())`;
-      this.deps.push("postcss-rtlcss");
+      await this.addDevDependencies(['postcss-rtlcss']);
     }
 
     this.fs.copyTpl(
@@ -106,16 +107,4 @@ postCSSOptions.push(rtl())`;
       { rtlValue: this.rtlValue }
     );
   }
-
-  install() {
-    const { name } = this.props;
-    this.scheduleInstallTask(
-      "npm",
-      this.deps,
-      { "save-dev": true },
-      { cwd: name }
-    );
-  }
-
-  end() {}
 };

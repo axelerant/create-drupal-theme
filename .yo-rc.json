@@ -1,9 +1,0 @@
-{
-  "generator-node": {
-    "promptValues": {
-      "authorName": "Bassam Ismail",
-      "authorEmail": "skippednote@gmail.com",
-      "authorUrl": "https://skippednote.dev"
-    }
-  }
-}
