@@ -18,17 +18,20 @@
     "yeoman-generator"
   ],
   "devDependencies": {
-    "yeoman-test": "^6.2.0",
-    "yeoman-assert": "^3.1.1",
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "@commitlint/prompt-cli": "^13.1.0",
     "coveralls": "^3.1.1",
     "eslint": "^7.31.0",
-    "prettier": "^2.3.2",
-    "husky": "^7.0.1",
-    "lint-staged": "^11.1.1",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^3.4.0",
     "eslint-config-xo": "^0.37.0",
-    "jest": "^27.0.6"
+    "eslint-plugin-prettier": "^3.4.0",
+    "husky": "^7.0.1",
+    "jest": "^27.0.6",
+    "lint-staged": "^11.1.1",
+    "prettier": "^2.3.2",
+    "yeoman-assert": "^3.1.1",
+    "yeoman-test": "^6.2.0"
   },
   "engines": {
     "npm": ">= 4.0.0"
@@ -42,19 +45,23 @@
     "testEnvironment": "node"
   },
   "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
+    "*.{css,scss}": [
+      "prettier --write"
     ],
-    "*.json": [
-      "prettier --write",
-      "git add"
+    "*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write"
     ]
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "eslintConfig": {
     "extends": [
@@ -74,7 +81,8 @@
   },
   "scripts": {
     "pretest": "eslint .",
-    "test": "jest"
+    "test": "jest",
+    "commit": "commit"
   },
   "repository": "skippednote/generator-kashmir",
   "license": "MIT"
