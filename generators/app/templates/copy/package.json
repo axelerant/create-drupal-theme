@@ -1,4 +1,6 @@
 {
+  "private": true,
+  "license": "MIT",
   "scripts": {
     "build": "gulp watch",
     "lint": "CI=true gulp lint"
