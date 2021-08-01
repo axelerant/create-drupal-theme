@@ -1,0 +1,212 @@
+{
+  "cacheBust": true,
+  "cleanPublic": true,
+  "defaultPattern": "all",
+  "defaultShowPatternInfo": false,
+  "ishControlsHide": {
+    "s": false,
+    "m": false,
+    "l": false,
+    "full": false,
+    "random": false,
+    "disco": false,
+    "hay": true,
+    "mqs": false,
+    "find": false,
+    "views-all": false,
+    "views-annotations": false,
+    "views-code": false,
+    "views-new": false,
+    "tools-all": false,
+    "tools-docs": false
+  },
+  "ishViewportRange": {
+    "s": [240, 500],
+    "m": [500, 800],
+    "l": [800, 2600]
+  },
+  "logLevel": "info",
+  "outputFileSuffixes": {
+    "rendered": ".rendered",
+    "rawTemplate": "",
+    "markupOnly": ".markup-only"
+  },
+  "paths": {
+    "source": {
+      "root": "./patternlab/",
+      "patterns": "./patterns/",
+      "data": "./patternlab/_data/",
+      "meta": "./patternlab/_meta/",
+      "annotations": "./patternlab/_annotations/",
+      "styleguide": "dist/",
+      "patternlabFiles": {
+        "general-header": "views/partials/general-header.mustache",
+        "general-footer": "views/partials/general-footer.mustache",
+        "patternSection": "views/partials/patternSection.mustache",
+        "patternSectionSubgroup": "views/partials/patternSectionSubgroup.mustache",
+        "viewall": "views/viewall.mustache"
+      },
+      "js": "./dist/js",
+      "images": "./images",
+      "fonts": "./fonts",
+      "css": "./dist/css"
+    },
+    "public": {
+      "root": "public/",
+      "patterns": "public/patterns/",
+      "data": "public/styleguide/data/",
+      "annotations": "public/annotations/",
+      "styleguide": "public/styleguide/",
+      "js": "public/js",
+      "images": "public/images",
+      "fonts": "public/fonts",
+      "css": "public/css"
+    }
+  },
+  "patternExtension": "twig",
+  "patternStateCascade": ["inprogress", "inreview", "complete"],
+  "patternExportAll": false,
+  "patternExportDirectory": "pattern_exports",
+  "patternExportPatternPartials": [],
+  "patternExportPreserveDirectoryStructure": true,
+  "patternExportRaw": false,
+  "patternMergeVariantArrays": true,
+  "renderFlatPatternsOnViewAllPages": false,
+  "serverOptions": {
+    "wait": 1000
+  },
+  "starterkitSubDir": "dist",
+  "styleGuideExcludes": [],
+  "theme": {
+    "color": "light",
+    "density": "compact",
+    "layout": "horizontal",
+    "noViewAll": false
+  },
+  "uikits": [
+    {
+      "name": "uikit-workshop",
+      "package": "@pattern-lab/uikit-workshop",
+      "outputDir": "",
+      "enabled": true,
+      "excludedPatternStates": [],
+      "excludedTags": []
+    }
+  ],
+  "engines": {
+    "twig": {
+      "namespaces": [
+        {
+          "id": "config",
+          "recursive": true,
+          "paths": ["patterns/00-config"]
+        },
+        {
+          "id": "base",
+          "recursive": true,
+          "paths": ["patterns/01-base"]
+        },
+        {
+          "id": "atoms",
+          "recursive": true,
+          "paths": ["patterns/02-atoms"]
+        },
+        {
+          "id": "molecules",
+          "recursive": true,
+          "paths": ["patterns/03-molecules"]
+        },
+        {
+          "id": "organisms",
+          "recursive": true,
+          "paths": ["patterns/04-organisms"]
+        },
+        {
+          "id": "pages",
+          "recursive": true,
+          "paths": ["patterns/05-pages"]
+        },
+        {
+          "id": "tempates",
+          "recursive": true,
+          "paths": ["patterns/06-templates"]
+        },
+        {
+          "id": "macros",
+          "recursive": true,
+          "paths": ["patternlab/_macros"]
+        }
+      ],
+      "alterTwigEnv": [
+        {
+          "file": "patternlab/_twig-components/filters/clean_class.filter.php",
+          "functions": ["add_clean_class_filter"]
+        },
+        {
+          "file": "patternlab/_twig-components/filters/clean_id.filter.php",
+          "functions": ["add_clean_id_filter"]
+        },
+        {
+          "file": "patternlab/_twig-components/filters/format_date.filter.php",
+          "functions": ["add_format_date_filter"]
+        },
+        {
+          "file": "patternlab/_twig-components/filters/placeholder.filter.php",
+          "functions": ["add_placeholder_filter"]
+        },
+        {
+          "file": "patternlab/_twig-components/filters/render.filter.php",
+          "functions": ["add_render_filter"]
+        },
+        {
+          "file": "patternlab/_twig-components/filters/safe_join.filter.php",
+          "functions": ["add_safe_join_filter"]
+        },
+        {
+          "file": "patternlab/_twig-components/filters/t.filter.php",
+          "functions": ["add_t_filter"]
+        },
+        {
+          "file": "patternlab/_twig-components/filters/without.filter.php",
+          "functions": ["add_without_filter"]
+        },
+        {
+          "file": "patternlab/_twig-components/filters/keysort.filter.php",
+          "functions": ["add_key_sort_filter"]
+        },
+        {
+          "file": "patternlab/_twig-components/filters/unique_id.filter.patternlab.php",
+          "functions": ["add_unique_id_filter"]
+        },
+        {
+          "file": "patternlab/_twig-components/functions/add_attributes.function.patternlab.php",
+          "functions": ["add_add_attributes_function"]
+        },
+        {
+          "file": "patternlab/_twig-components/functions/attach_library.function.php",
+          "functions": ["add_attach_library_function"]
+        },
+        {
+          "file": "patternlab/_twig-components/functions/link.function.php",
+          "functions": ["add_link_function"]
+        },
+        {
+          "file": "patternlab/_twig-components/functions/path.function.php",
+          "functions": ["add_path_function"]
+        },
+        {
+          "file": "patternlab/_twig-components/functions/url.function.php",
+          "functions": ["add_url_function"]
+        },
+        {
+          "file": "patternlab/_twig-components/functions/create_attribute.function.php",
+          "functions": ["add_create_attribute_function"]
+        },
+        {
+          "file": "patternlab/_twig-components/functions/asset.function.php",
+          "functions": ["add_asset_function"]
+        }
+      ]
+    }
+  }
+}

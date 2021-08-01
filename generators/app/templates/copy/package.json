@@ -30,6 +30,7 @@
     "gulp-stylelint": "^13.0.0",
     "gulp-svgstore": "^8.0.0",
     "gulp-typescript": "^6.0.0-alpha.1",
+    "node-sass-globbing": "^0.0.23",
     "postcss": "^8.3.6",
     "prettier": "^2.3.2",
     "sass": "^1.36.0",

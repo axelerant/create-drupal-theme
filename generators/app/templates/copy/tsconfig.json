@@ -9,5 +9,5 @@
     "forceConsistentCasingInFileNames": true,
     "module": "commonjs"
   },
-  "include": ["ts/*.ts"]
+  "include": ["patterns/**/*.ts"]
 }
