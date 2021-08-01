@@ -6,7 +6,7 @@ const ts = typescript.createProject('tsconfig.json', { noEmit: true });
 
 module.exports = (gulp, config) => {
   gulp.task('lint:stylelint', () =>
-    gulp.src(config.scss.all).pipe(stylelint(config.stylelint.options)),
+    gulp.src(config.scss.source).pipe(stylelint(config.stylelint.options)),
   );
 
   gulp.task('lint:eslint', () =>

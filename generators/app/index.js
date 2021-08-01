@@ -1,37 +1,46 @@
-const Generator = require("yeoman-generator");
-const chalk = require("chalk");
-const yosay = require("yosay");
+const Generator = require('yeoman-generator');
+const chalk = require('chalk');
+const yosay = require('yosay');
 
 module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
     this.deps = [];
-    this.rtlValue = "";
+    this.rtlValue = '';
+    this.plValue = {
+      injectCss: '',
+      injectJs: '',
+    };
   }
 
   async prompting() {
-    this.log(yosay(`Welcome fellow ${chalk.blue("Drupaler")}!`));
+    this.log(yosay(`Welcome fellow ${chalk.blue('Drupaler')}!`));
 
     const prompts = [
       {
-        type: "input",
-        name: "name",
-        message: "Would you like to name the theme?",
+        type: 'input',
+        name: 'name',
+        message: 'Would you like to name the theme?',
       },
       {
-        type: "confirm",
-        name: "cypress",
-        message: "Would you like to enable Cypress?",
+        type: 'confirm',
+        name: 'cypress',
+        message: 'Would you like to enable Cypress?',
       },
       {
-        type: "confirm",
-        name: "lighthouse",
-        message: "Would you like to enable Lighthouse?",
+        type: 'confirm',
+        name: 'lighthouse',
+        message: 'Would you like to enable Lighthouse?',
       },
       {
-        type: "confirm",
-        name: "rtl",
-        message: "Would you like to enable RTL support?",
+        type: 'confirm',
+        name: 'rtl',
+        message: 'Would you like to enable RTL support?',
+      },
+      {
+        type: 'confirm',
+        name: 'pl',
+        message: 'Would you like to use Pattern Lab?',
       },
     ];
 
@@ -41,80 +50,114 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    const { name, cypress, lighthouse, rtl } = this.props;
+    const { name, cypress, lighthouse, rtl, pl } = this.props;
+
     this.fs.copy(
-      this.templatePath("copy/**"),
+      this.templatePath('copy/**'),
       this.destinationPath(`${name}/`),
       {
         globOptions: {
           dot: true,
         },
-      }
+      },
     );
 
     this.fs.copyTpl(
-      this.templatePath("rename/kashmir.breakpoints.yml"),
+      this.templatePath('rename/kashmir.breakpoints.yml'),
       this.destinationPath(`${name}/${name}.breakpoints.yml`),
-      { name: name }
+      { name },
     );
     this.fs.copyTpl(
-      this.templatePath("rename/kashmir.info.yml"),
+      this.templatePath('rename/kashmir.info.yml'),
       this.destinationPath(`${name}/${name}.info.yml`),
-      { name: name }
+      { name },
     );
     this.fs.copyTpl(
-      this.templatePath("rename/kashmir.libraries.yml"),
+      this.templatePath('rename/kashmir.libraries.yml'),
       this.destinationPath(`${name}/${name}.libraries.yml`),
-      { name: name }
+      { name },
     );
     this.fs.copyTpl(
-      this.templatePath("rename/kashmir.theme"),
+      this.templatePath('rename/kashmir.theme'),
       this.destinationPath(`${name}/${name}.theme`),
-      { name: name }
+      { name },
     );
 
     if (cypress) {
       this.fs.copy(
-        this.templatePath("options/cypress/**"),
+        this.templatePath('options/cypress/**'),
         this.destinationPath(`${name}/`),
         {
           globOptions: {
             dot: true,
           },
-        }
+        },
       );
 
-      this.deps.push(...["cypress", "@percy/cypress"]);
+      this.deps.push(...['cypress', '@percy/cypress']);
     }
 
     if (lighthouse) {
       this.fs.copy(
-        this.templatePath("options/lighthouse/lighthouserc.js"),
-        this.destinationPath(`${name}/lighthouserc.js`)
+        this.templatePath('options/lighthouse/lighthouserc.js'),
+        this.destinationPath(`${name}/lighthouserc.js`),
       );
     }
 
     if (rtl) {
-      this.rtlValue = `const rtl = require("postcss-rtlcss");
-postCSSOptions.push(rtl())`;
-      this.deps.push("postcss-rtlcss");
+      this.rtlValue = `const rtl = require('postcss-rtlcss');
+postCSSOptions.push(rtl());`;
+      this.deps.push('postcss-rtlcss');
+    }
+
+    if (pl) {
+      this.plValue = {
+        injectCss: `, 'inject:css'`,
+        injectJs: `, 'inject:js'`,
+      };
+      this.fs.copy(
+        this.templatePath('options/pl/copy/**'),
+        this.destinationPath(`${name}/`),
+        {
+          globOptions: {
+            dot: true,
+          },
+        },
+      );
+      this.fs.copy(
+        this.templatePath('options/pl/inject.js'),
+        this.destinationPath(`${name}/gulp-tasks/inject.js`),
+      );
+
+      this.deps.push(
+        ...[
+          '@pattern-lab/cli',
+          '@pattern-lab/core',
+          '@pattern-lab/engine-twig-php',
+          '@pattern-lab/starterkit-twig-demo',
+          '@pattern-lab/uikit-workshop',
+          'gulp-inject',
+          'sort-stream',
+        ],
+      );
     }
 
     this.fs.copyTpl(
-      this.templatePath("options/rtl/scss.js"),
+      this.templatePath('options/rtl/scss.js'),
       this.destinationPath(`${name}/gulp-tasks/scss.js`),
-      { rtlValue: this.rtlValue }
+      { rtlValue: this.rtlValue },
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('options/pl/watch.js'),
+      this.destinationPath(`${name}/gulp-tasks/watch.js`),
+      { pl: this.plValue },
     );
   }
 
   install() {
     const { name } = this.props;
-    this.scheduleInstallTask(
-      "npm",
-      this.deps,
-      { "save-dev": true },
-      { cwd: name }
-    );
+    this.scheduleInstallTask('yarn', this.deps, { dev: true }, { cwd: name });
   }
 
   end() {}

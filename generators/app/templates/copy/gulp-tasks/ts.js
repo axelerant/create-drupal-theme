@@ -1,5 +1,5 @@
 const typescript = require('gulp-typescript');
-const ts = typescript.createProject("tsconfig.json");
+const ts = typescript.createProject('tsconfig.json');
 
 module.exports = (gulp, config) => {
   gulp.task('ts', () =>

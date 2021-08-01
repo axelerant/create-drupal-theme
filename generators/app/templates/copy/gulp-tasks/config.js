@@ -1,15 +1,16 @@
 module.exports = {
   scss: {
-    source: ['scss/**/[^_]*.scss'],
-    all: ['scss/**/*.scss'],
+    source: ['patterns/**/[^_]*.scss'],
     destination: 'dist/css',
     options: {
       outputStyle: 'expanded',
       includePaths: ['./node_modules'],
+      errLogToConsole: true,
+      importer: require('node-sass-globbing'),
     },
   },
   ts: {
-    source: ['ts/**/*.ts'],
+    source: ['patterns/**/*.ts'],
     destination: 'dist/js',
   },
   svg: {

@@ -1,0 +1,64 @@
+// for using svg in css place svg in the images folder
+$svg-path: '/themes/custom/drupalastic/images';
+$img-path: '/themes/custom/drupalastic/images';
+
+@mixin bg-svg($svg: 'arrow.svg') {
+  content: '';
+  position: static;
+  background-image: url('#{$svg-path}/#{$svg}');
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 1.125rem;
+  min-width: 1.125rem;
+
+  @content;
+}
+
+@mixin icon($svg: null, $svg-hover: null, $padding: 20, $before-after: null) {
+  @if $before-after {
+    &:#{$before-after} {
+      @include bg-svg($svg);
+
+      @if $before-after == 'before' {
+        padding-left: #{$padding}px;
+      } @else if $before-after == 'after' {
+        padding-right: #{$padding}px;
+      } @else {
+        @warn "`#{$before-after}` is not a valid pseudo-element.";
+      }
+
+      @content;
+    }
+
+    @if $svg-hover {
+      &:hover:#{$before-after},
+      &.focus:#{$before-after} {
+        @include bg-svg($svg-hover);
+
+        @if $before-after == 'before' {
+          padding-left: #{$padding}px;
+        } @else if $before-after == 'after' {
+          padding-right: #{$padding}px;
+        } @else {
+          @warn "`#{$before-after}` is not a valid pseudo-element.";
+        }
+      }
+    }
+  } @else {
+    @include bg-svg($svg) {
+      @content;
+    }
+  }
+}
+
+@mixin icon-after($svg: 'arrow.svg', $svg-hover: null, $padding: 20) {
+  @include icon($svg, $svg-hover, $padding, 'after') {
+    @content;
+  }
+}
+
+@mixin icon-before($svg: 'arrow.svg', $svg-hover: null, $padding: 20) {
+  @include icon($svg, $svg-hover, $padding, 'before') {
+    @content;
+  }
+}
