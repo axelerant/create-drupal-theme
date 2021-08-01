@@ -3,7 +3,7 @@ const sort = require('sort-stream');
 
 module.exports = (gulp) => {
   gulp.task('inject:js', () => {
-    var target = gulp.src('source/_meta/_foot.twig');
+    var target = gulp.src('patternlab/_meta/_foot.twig');
     var sources = gulp.src(['dist/js/**/*.js'], { read: false });
 
     return target
@@ -16,11 +16,11 @@ module.exports = (gulp) => {
           ),
         ),
       )
-      .pipe(gulp.dest('source/_meta'));
+      .pipe(gulp.dest('patternlab/_meta'));
   });
 
   gulp.task('inject:css', () => {
-    var target = gulp.src('source/_meta/_head.twig');
+    var target = gulp.src('patternlab/_meta/_head.twig');
     var sources = gulp.src(['dist/css/**/*.css'], { read: false });
 
     return target
@@ -33,7 +33,7 @@ module.exports = (gulp) => {
           ),
         ),
       )
-      .pipe(gulp.dest('source/_meta'));
+      .pipe(gulp.dest('patternlab/_meta'));
   });
 
   gulp.task('inject', gulp.series('inject:css', 'inject:js'));

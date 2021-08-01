@@ -8,8 +8,9 @@ const tasks = [
   'svg',
   'prettier',
   'lint',
-  'watch',
   'images',
+  <%- pl.plTask %>
+  'watch',
   'default',
 ];
 

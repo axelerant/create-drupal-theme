@@ -10,6 +10,8 @@ module.exports = class extends Generator {
     this.plValue = {
       injectCss: '',
       injectJs: '',
+      plServe: '',
+      plTask: '',
     };
   }
 
@@ -114,6 +116,9 @@ postCSSOptions.push(rtl());`;
       this.plValue = {
         injectCss: `, 'inject:css'`,
         injectJs: `, 'inject:js'`,
+        plServe: `'pl:serve', `,
+        plBuild: `, 'pl:build'`,
+        plTask: `'patternlab',\n  'inject',`,
       };
       this.fs.copy(
         this.templatePath('options/pl/copy/**'),
@@ -127,6 +132,10 @@ postCSSOptions.push(rtl());`;
       this.fs.copy(
         this.templatePath('options/pl/inject.js'),
         this.destinationPath(`${name}/gulp-tasks/inject.js`),
+      );
+      this.fs.copy(
+        this.templatePath('options/pl/patternlab.js'),
+        this.destinationPath(`${name}/gulp-tasks/patternlab.js`),
       );
 
       this.deps.push(
@@ -151,6 +160,18 @@ postCSSOptions.push(rtl());`;
     this.fs.copyTpl(
       this.templatePath('options/pl/watch.js'),
       this.destinationPath(`${name}/gulp-tasks/watch.js`),
+      { pl: this.plValue },
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('options/pl/default.js'),
+      this.destinationPath(`${name}/gulp-tasks/default.js`),
+      { pl: this.plValue },
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('options/pl/gulpfile.js'),
+      this.destinationPath(`${name}/gulpfile.js`),
       { pl: this.plValue },
     );
   }
