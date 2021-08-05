@@ -1,6 +1,13 @@
 const Generator = require('yeoman-generator');
+const { execSync } = require('child_process');
 const chalk = require('chalk');
 const yosay = require('yosay');
+const path = require('path');
+const fs = require('fs');
+
+let fileContent = fs
+  .readFileSync(path.join(__dirname, './templates/options/ci/frontend.yml'))
+  .toString();
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -44,6 +51,11 @@ module.exports = class extends Generator {
         name: 'pl',
         message: 'Would you like to use Pattern Lab?',
       },
+      {
+        type: 'confirm',
+        name: 'ci',
+        message: 'Would you like to update the .gitlab-ci.yml file?',
+      },
     ];
 
     return this.prompt(prompts).then((props) => {
@@ -52,7 +64,24 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    const { name, cypress, lighthouse, rtl, pl } = this.props;
+    const { name, cypress, lighthouse, rtl, pl, ci } = this.props;
+
+    if (ci) {
+      try {
+        const gitRoot = execSync('git rev-parse --show-toplevel')
+          .toString()
+          .trim();
+        const ciFilePath = path.join(gitRoot, '.gitlab-ci.yml');
+        if (fs.existsSync(ciFilePath)) {
+          fileContent = fileContent.replace(/THEME_NAME/g, name);
+          fs.appendFileSync(ciFilePath, fileContent);
+        } else {
+          fs.writeFileSync(ciFilePath, fileContent);
+        }
+      } catch {
+        console.log(`You aren't in a Git Repository.`);
+      }
+    }
 
     this.fs.copy(
       this.templatePath('copy/**'),

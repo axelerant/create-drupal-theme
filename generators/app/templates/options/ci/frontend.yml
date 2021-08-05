@@ -1,0 +1,51 @@
+
+frontend_codequality:
+  <<: *default-pipelines
+  image: node:lts
+  stage: lint
+  variables:
+    CYPRESS_CACHE_FOLDER: $CI_PROJECT_DIR/web/themes/custom/THEME_NAME/node_modules/CYPRESS_CACHE
+  script:
+    - cd web/themes/custom/THEME_NAME
+    - npm ci --cache $CI_PROJECT_DIR/.npm --prefer-offline
+    - npm run lint
+  tags:
+    - docker
+  except:
+    - schedule
+
+frontend_vr:
+  <<: *default-pipelines
+  image: skippednote/drupal-cypress:1.0.5
+  tags:
+    - docker
+  services:
+    - name: registry.gitorious.xyz/contrib-tracker/backend/db:theme
+      alias: mariadb
+  stage: test
+  variables:
+    CYPRESS_CACHE_FOLDER: $CI_PROJECT_DIR/web/themes/custom/THEME_NAME/node_modules/CYPRESS_CACHE
+    SITE_BASE_URL: "http://localhost"
+    ALLOW_EMPTY_PASSWORD: "yes"
+  before_script:
+    - .gitlab/ci.sh
+  script:
+    - composer install -o
+    - vendor/bin/drush -y updb
+    - vendor/bin/drush -y cim
+    - vendor/bin/drush upwd ct-admin "ct-admin"
+    - vendor/bin/drush cr
+    - cd web/themes/custom/THEME_NAME
+    - npm ci --cache $CI_PROJECT_DIR/.npm --prefer-offline
+    - npm run build
+    - npm run vr
+  artifacts:
+    expire_in: 1 week
+    when: always
+    paths:
+      - $CI_PROJECT_DIR/web/themes/custom/THEME_NAME/cypress/screenshots
+      - $CI_PROJECT_DIR/web/themes/custom/THEME_NAME/cypress/videos
+  except:
+    - schedule
+  needs:
+    - frontend_codequality

@@ -1,7 +1,7 @@
 module.exports = (gulp, config) => {
   gulp.task('watch:scss', () => {
     gulp.watch(
-      ...config.scss.source,
+      ...config.scss.all,
       gulp.series('lint:stylelint', 'scss'<%- pl.injectCss %>),
     );
   });

@@ -1,6 +1,7 @@
 module.exports = {
   scss: {
     source: ['patterns/**/[^_]*.scss'],
+    all: ['patterns/**/*.scss'],
     destination: 'dist/css',
     options: {
       outputStyle: 'expanded',
