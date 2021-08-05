@@ -1,5 +1,5 @@
+const { spawn } = require('child_process');
 const build = require('@pattern-lab/cli/bin/build');
-const serve = require('@pattern-lab/cli/bin/serve');
 const config = require('../patternlab-config.json');
 
 module.exports = (gulp) => {
@@ -8,6 +8,8 @@ module.exports = (gulp) => {
   });
 
   gulp.task('pl:serve', async () => {
-    serve(config, { cleanPublic: config.cleanPublic });
+    spawn('./node_modules/.bin/patternlab', ['serve'], {
+      stdio: 'inherit',
+    });
   });
 };
