@@ -3,8 +3,8 @@ const sort = require('sort-stream');
 
 module.exports = (gulp) => {
   gulp.task('inject:js', () => {
-    var target = gulp.src('patternlab/_meta/_foot.twig');
-    var sources = gulp.src(['dist/js/**/*.js'], { read: false });
+    const target = gulp.src('patternlab/_meta/js.twig');
+    const sources = gulp.src(['dist/js/**/*.js'], { read: false });
 
     return target
       .pipe(
@@ -20,8 +20,8 @@ module.exports = (gulp) => {
   });
 
   gulp.task('inject:css', () => {
-    var target = gulp.src('patternlab/_meta/_head.twig');
-    var sources = gulp.src(['dist/css/**/*.css'], { read: false });
+    const target = gulp.src('patternlab/_meta/css.twig');
+    const sources = gulp.src(['dist/css/**/*.css'], { read: false });
 
     return target
       .pipe(

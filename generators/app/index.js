@@ -146,8 +146,8 @@ postCSSOptions.push(rtl());`;
         injectCss: `, 'inject:css'`,
         injectJs: `, 'inject:js'`,
         plServe: `'pl:serve', `,
-        plBuild: `, 'pl:build'`,
-        plTask: `'patternlab',\n  'inject',`,
+        plBuild: `\n'inject',\n'pl:build',`,
+        plTask: `'inject',\n'patternlab',`,
       };
       this.fs.copy(
         this.templatePath('options/pl/copy/**'),

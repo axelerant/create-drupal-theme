@@ -13,5 +13,5 @@ module.exports = (gulp, config) => {
     );
   });
 
-  gulp.task('watch', gulp.parallel(<%- pl.plServe %>'watch:scss', 'watch:ts'));
+  gulp.task('watch', gulp.series('default', gulp.parallel(<%- pl.plServe %>'watch:scss', 'watch:ts')));
 };

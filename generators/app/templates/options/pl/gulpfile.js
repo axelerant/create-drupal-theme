@@ -10,8 +10,8 @@ const tasks = [
   'lint',
   'images',
   <%- pl.plTask %>
-  'watch',
   'default',
+  'watch',
 ];
 
 tasks.forEach((task) => {
