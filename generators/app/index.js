@@ -1,7 +1,6 @@
 const Generator = require('yeoman-generator');
 const { execSync } = require('child_process');
 const chalk = require('chalk');
-const yosay = require('yosay');
 const path = require('path');
 const fs = require('fs');
 
@@ -9,63 +8,116 @@ let fileContent = fs
   .readFileSync(path.join(__dirname, './templates/options/ci/frontend.yml'))
   .toString();
 
+const taskPrompt = [
+  {
+    type: 'list',
+    name: 'task',
+    choices: ['theme', 'component'],
+    message: 'Please choose what you would like to generate?',
+  },
+];
+
+const themePrompt = [
+  {
+    type: 'input',
+    name: 'name',
+    message: 'Please enter the theme name:',
+  },
+  {
+    type: 'confirm',
+    name: 'cypress',
+    message: 'Would you like to enable Cypress?',
+  },
+  {
+    type: 'confirm',
+    name: 'lighthouse',
+    message: 'Would you like to enable Lighthouse?',
+  },
+  {
+    type: 'confirm',
+    name: 'rtl',
+    message: 'Would you like to enable RTL support?',
+  },
+  {
+    type: 'confirm',
+    name: 'pl',
+    message: 'Would you like to use Pattern Lab?',
+  },
+  {
+    type: 'confirm',
+    name: 'ci',
+    message: 'Would you like to update the .gitlab-ci.yml file?',
+  },
+];
+const componentPrompt = [
+  {
+    type: 'input',
+    name: 'name',
+    message: 'Please enter the component name:',
+  },
+  {
+    type: 'list',
+    name: 'type',
+    choices: ['atom', 'molecule', 'organism', 'template', 'page'],
+    message: 'Choose the type of the component',
+  },
+  {
+    type: 'checkbox',
+    name: 'files',
+    choices: ['sass', 'typescript', 'json', 'twig', 'markdown'],
+    message: 'Choose the files you to generate?',
+  },
+];
+
 module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
+    this.props = null;
+    this.theme = null;
     this.deps = [];
-    this.rtlValue = '';
-    this.plValue = {
-      injectCss: '',
-      injectJs: '',
-      plServe: '',
-      plTask: '',
-    };
   }
 
   async prompting() {
-    this.log(yosay(`Welcome fellow ${chalk.blue('Drupaler')}!`));
-
-    const prompts = [
-      {
-        type: 'input',
-        name: 'name',
-        message: 'Would you like to name the theme?',
-      },
-      {
-        type: 'confirm',
-        name: 'cypress',
-        message: 'Would you like to enable Cypress?',
-      },
-      {
-        type: 'confirm',
-        name: 'lighthouse',
-        message: 'Would you like to enable Lighthouse?',
-      },
-      {
-        type: 'confirm',
-        name: 'rtl',
-        message: 'Would you like to enable RTL support?',
-      },
-      {
-        type: 'confirm',
-        name: 'pl',
-        message: 'Would you like to use Pattern Lab?',
-      },
-      {
-        type: 'confirm',
-        name: 'ci',
-        message: 'Would you like to update the .gitlab-ci.yml file?',
-      },
-    ];
-
-    return this.prompt(prompts).then((props) => {
+    return this.prompt(taskPrompt).then((props) => {
       this.props = props;
     });
   }
 
-  writing() {
-    const { name, cypress, lighthouse, rtl, pl, ci } = this.props;
+  async writing() {
+    const { task } = this.props;
 
+    if (task === 'theme') {
+      const props = await this.prompt(themePrompt);
+      this._generateTheme(props);
+    } else if (task === 'component') {
+      const files = fs.readdirSync(process.cwd());
+      if (!files.find((i) => i.indexOf('patterns') > -1)) {
+        console.error(
+          chalk.red("There isn't any patterns directory in this path"),
+        );
+        process.exit(1);
+      }
+
+      const props = await this.prompt(componentPrompt);
+      this._generateComponent(props);
+    }
+  }
+
+  install() {
+    if (this.deps.length) {
+      this.scheduleInstallTask(
+        'yarn',
+        this.deps,
+        { dev: true, silent: true },
+        { cwd: this.theme },
+      );
+    }
+  }
+
+  end() {}
+
+  _generateTheme({ name, cypress, lighthouse, rtl, pl, ci }) {
+    this.theme = name;
     if (ci) {
       try {
         const gitRoot = execSync('git rev-parse --show-toplevel')
@@ -79,7 +131,8 @@ module.exports = class extends Generator {
           fs.writeFileSync(ciFilePath, fileContent);
         }
       } catch {
-        console.log(`You aren't in a Git Repository.`);
+        console.error(chalk.red(`You aren't in a Git Repository!`));
+        process.exit(1);
       }
     }
 
@@ -203,12 +256,52 @@ postCSSOptions.push(rtl());`;
       this.destinationPath(`${name}/gulpfile.js`),
       { pl: this.plValue },
     );
+
+    console.log(
+      chalk.greenBright(`The ${chalk.blueBright(name)} themes was created.`),
+    );
   }
 
-  install() {
-    const { name } = this.props;
-    this.scheduleInstallTask('yarn', this.deps, { dev: true }, { cwd: name });
-  }
+  _generateComponent(props) {
+    const typeMap = {
+      atom: '02-atoms',
+      molecule: '03-molecules',
+      organism: '04-organisms',
+      template: '05-templates',
+      page: '06-pages',
+    };
+    const fileMap = {
+      sass: 'scss',
+      typescript: 'ts',
+      twig: 'twig',
+      json: 'json',
+      yaml: 'yml',
+      markdown: 'md',
+    };
+    const componentPath = path.join(
+      process.cwd(),
+      'patterns',
+      typeMap[props.type],
+      props.name,
+    );
+    if (fs.existsSync(componentPath)) {
+      console.error(chalk.red('Component already exists!'));
+      process.exit(1);
+    }
 
-  end() {}
+    fs.mkdirSync(componentPath);
+
+    props.files.forEach((file) => {
+      fs.writeFileSync(
+        path.join(componentPath, `${props.name}.${fileMap[file]}`),
+        '',
+      );
+    });
+
+    console.log(
+      chalk.greenBright(
+        `The ${chalk.blueBright(props.name)} component was created.`,
+      ),
+    );
+  }
 };

@@ -4,7 +4,7 @@
   "scripts": {
     "build": "gulp watch",
     "lint": "CI=true gulp lint",
-    "postinstall": "vim -c \"set ff=unix\" -c \"wq\" ./node_modules/.bin/patternlab"
+    "postinstall": "npx crlf --set=LF node_modules/.bin/patternlab"
   },
   "devDependencies": {
     "@types/autoprefixer": "^10.2.0",
