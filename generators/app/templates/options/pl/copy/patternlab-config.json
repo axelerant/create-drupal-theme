@@ -49,7 +49,8 @@
       "js": "./dist/js",
       "images": "./images",
       "fonts": "./fonts",
-      "css": "./dist/css"
+      "css": "./dist/css",
+      "maps": "./dist/maps"
     },
     "public": {
       "root": "public/",
@@ -60,7 +61,8 @@
       "js": "public/js",
       "images": "public/images",
       "fonts": "public/fonts",
-      "css": "public/css"
+      "css": "public/css",
+      "maps": "public/maps"
     }
   },
   "patternExtension": "twig",

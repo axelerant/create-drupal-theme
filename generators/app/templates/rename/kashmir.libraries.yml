@@ -1,0 +1,8 @@
+global:
+  css:
+    theme:
+      dist/css/global.css: {}
+  js:
+    dist/js/main.js:
+      attributes:
+        type: module

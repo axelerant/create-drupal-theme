@@ -3,6 +3,7 @@ const gulp = require('gulp');
 const config = require('./gulp-tasks/config');
 
 const tasks = [
+  'clean',
   'scss',
   'ts',
   'svg',
