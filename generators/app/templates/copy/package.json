@@ -2,7 +2,8 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "gulp watch",
+    "start": "gulp watch",
+    "build": "CI=true gulp",
     "lint": "CI=true gulp lint",
     "postinstall": "npx crlf --set=LF node_modules/.bin/patternlab"
   },
