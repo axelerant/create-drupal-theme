@@ -18,7 +18,7 @@
     "@typescript-eslint/parser": "^4.29.1",
     "autoprefixer": "^10.3.2",
     "breakpoint-sass": "^2.7.1",
-    "cssnano": "^5.0.7",
+    "cssnano": "^5.0.8",
     "del": "^6.0.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
