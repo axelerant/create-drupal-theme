@@ -15,7 +15,7 @@
     "@types/node": "^16.7.1",
     "@types/undertaker": "^1.2.7",
     "@typescript-eslint/eslint-plugin": "^4.29.2",
-    "@typescript-eslint/parser": "^4.29.2",
+    "@typescript-eslint/parser": "^4.31.2",
     "autoprefixer": "^10.3.2",
     "breakpoint-sass": "^2.7.1",
     "cssnano": "^5.0.8",
