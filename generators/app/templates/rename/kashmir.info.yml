@@ -13,3 +13,5 @@ regions:
 
 libraries:
   - core/normalize
+  # - kashmir/global
+  # - kashmir/tailwind

@@ -6,3 +6,7 @@ global:
     dist/js/main.js:
       attributes:
         type: module
+# tailwind:
+#   css:
+#     theme:
+#       dist/css/tailwind.css: {}

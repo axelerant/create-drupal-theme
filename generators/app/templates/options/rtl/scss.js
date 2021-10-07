@@ -4,8 +4,9 @@ const postcss = require('gulp-postcss');
 const sass = require('gulp-sass')(require('sass'));
 const sassGlob = require('gulp-sass-glob');
 const sourcemaps = require('gulp-sourcemaps');
+const tailwind = require('tailwindcss');
 
-const postCSSOptions = [autoprefixer()];
+const postCSSOptions = [autoprefixer(), tailwind()];
 <%- rtlValue %>
 
 module.exports = (gulp, config) => {
