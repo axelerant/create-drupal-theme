@@ -124,14 +124,14 @@
           "paths": ["patterns/04-organisms"]
         },
         {
-          "id": "pages",
+          "id": "templates",
           "recursive": true,
-          "paths": ["patterns/05-pages"]
+          "paths": ["patterns/05-templates"]
         },
         {
-          "id": "tempates",
+          "id": "pages",
           "recursive": true,
-          "paths": ["patterns/06-templates"]
+          "paths": ["patterns/06-pages"]
         },
         {
           "id": "macros",

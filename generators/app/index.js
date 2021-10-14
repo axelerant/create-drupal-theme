@@ -27,26 +27,31 @@ const themePrompt = [
     type: 'confirm',
     name: 'cypress',
     message: 'Would you like to enable Cypress?',
+    default: false,
   },
   {
     type: 'confirm',
     name: 'lighthouse',
     message: 'Would you like to enable Lighthouse?',
+    default: false,
   },
   {
     type: 'confirm',
     name: 'rtl',
     message: 'Would you like to enable RTL support?',
+    default: false,
   },
   {
     type: 'confirm',
     name: 'pl',
     message: 'Would you like to use Pattern Lab?',
+    default: false,
   },
   {
     type: 'confirm',
     name: 'ci',
     message: 'Would you like to update the .gitlab-ci.yml file?',
+    default: false,
   },
 ];
 const componentPrompt = [
