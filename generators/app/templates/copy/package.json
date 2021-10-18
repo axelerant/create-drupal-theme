@@ -26,7 +26,7 @@
     "gulp": "^4.0.2",
     "gulp-eslint-new": "^0.4.0",
     "gulp-if": "^3.0.0",
-    "gulp-imagemin": "7",
+    "gulp-imagemin": "8",
     "gulp-postcss": "^9.0.1",
     "gulp-prettier": "^4.0.0",
     "gulp-sass": "^5.0.0",
