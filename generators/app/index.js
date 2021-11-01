@@ -143,7 +143,13 @@ module.exports = class extends Generator {
           fs.writeFileSync(ciFilePath, fileContent);
         }
       } catch {
-        console.error(chalk.red(`You aren't in a Git Repository!`));
+        console.error(
+          chalk.red(
+            `This project doesn't have a ${chalk.greenBright(
+              '.gitlab-ci.yml',
+            )} in the root directory.`,
+          ),
+        );
         process.exit(1);
       }
     }
