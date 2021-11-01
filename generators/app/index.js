@@ -80,6 +80,13 @@ module.exports = class extends Generator {
     this.props = null;
     this.theme = null;
     this.deps = [];
+    this.plValue = {
+      injectCss: ``,
+      injectJs: ``,
+      plServe: ``,
+      plBuild: ``,
+      plTask: ``,
+    };
   }
 
   async prompting() {
