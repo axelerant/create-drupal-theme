@@ -15,3 +15,11 @@ libraries:
   - core/normalize
   # - kashmir/global
   # - kashmir/tailwind
+
+components:
+  namespaces:
+    atoms: components/02-atoms
+    molecules: components/03-molecules
+    organisms: components/04-organisms
+    templates: components/05-templates
+    pages: components/06-pages

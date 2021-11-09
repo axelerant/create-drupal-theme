@@ -34,7 +34,7 @@
   "paths": {
     "source": {
       "root": "./patternlab/",
-      "patterns": "./patterns/",
+      "patterns": "./components/",
       "data": "./patternlab/_data/",
       "meta": "./patternlab/_meta/",
       "annotations": "./patternlab/_annotations/",
@@ -54,7 +54,7 @@
     },
     "public": {
       "root": "public/",
-      "patterns": "public/patterns/",
+      "patterns": "public/components/",
       "data": "public/styleguide/data/",
       "annotations": "public/annotations/",
       "styleguide": "public/styleguide/",
@@ -101,37 +101,37 @@
         {
           "id": "config",
           "recursive": true,
-          "paths": ["patterns/00-config"]
+          "paths": ["components/00-config"]
         },
         {
           "id": "base",
           "recursive": true,
-          "paths": ["patterns/01-base"]
+          "paths": ["components/01-base"]
         },
         {
           "id": "atoms",
           "recursive": true,
-          "paths": ["patterns/02-atoms"]
+          "paths": ["components/02-atoms"]
         },
         {
           "id": "molecules",
           "recursive": true,
-          "paths": ["patterns/03-molecules"]
+          "paths": ["components/03-molecules"]
         },
         {
           "id": "organisms",
           "recursive": true,
-          "paths": ["patterns/04-organisms"]
+          "paths": ["components/04-organisms"]
         },
         {
           "id": "templates",
           "recursive": true,
-          "paths": ["patterns/05-templates"]
+          "paths": ["components/05-templates"]
         },
         {
           "id": "pages",
           "recursive": true,
-          "paths": ["patterns/06-pages"]
+          "paths": ["components/06-pages"]
         },
         {
           "id": "macros",

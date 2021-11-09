@@ -4,8 +4,7 @@
   "scripts": {
     "start": "gulp watch",
     "build": "CI=true gulp",
-    "lint": "CI=true gulp lint",
-    "postinstall": "npx crlf --set=LF node_modules/.bin/patternlab"
+    "lint": "CI=true gulp lint"
   },
   "devDependencies": {
     "@types/autoprefixer": "^10.2.0",

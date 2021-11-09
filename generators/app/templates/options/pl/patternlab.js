@@ -5,11 +5,11 @@ const build = require('@pattern-lab/cli/bin/build');
 const config = require('../patternlab-config.json');
 
 module.exports = (gulp) => {
-  const jsFile = path.join(__dirname, '../patternlab/_meta/js.twig');
+  const jsFile = path.join(__dirname, '../components/_meta/js.twig');
   if (!fs.existsSync(jsFile)) {
     fs.writeFileSync(jsFile, '<!-- inject:js -->\n<!-- endinject -->');
   }
-  const cssFile = path.join(__dirname, '../patternlab/_meta/css.twig');
+  const cssFile = path.join(__dirname, '../components/_meta/css.twig');
   if (!fs.existsSync(cssFile)) {
     fs.writeFileSync(cssFile, '<!-- inject:css -->\n<!-- endinject -->');
   }

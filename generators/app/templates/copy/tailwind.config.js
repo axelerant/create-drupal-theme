@@ -1,5 +1,5 @@
 module.exports = {
-  purge: ['patterns/**/*.{html,twig,scss,css,js,ts}'],
+  purge: ['components/**/*.{html,twig,scss,css,js,ts}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},

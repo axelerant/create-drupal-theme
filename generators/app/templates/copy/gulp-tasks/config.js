@@ -1,7 +1,7 @@
 module.exports = {
   scss: {
-    source: ['patterns/**/[^_]*.scss'],
-    all: ['patterns/**/*.scss'],
+    source: ['components/**/[^_]*.scss'],
+    all: ['components/**/*.scss'],
     destination: 'dist/css',
     options: {
       outputStyle: 'expanded',
@@ -11,7 +11,7 @@ module.exports = {
     },
   },
   ts: {
-    source: ['patterns/**/*.ts'],
+    source: ['components/**/*.ts'],
     destination: 'dist/js',
   },
   svg: {

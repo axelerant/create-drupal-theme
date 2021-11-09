@@ -42,10 +42,11 @@ const themePrompt = [
     default: false,
   },
   {
-    type: 'confirm',
+    type: 'list',
     name: 'pl',
-    message: 'Would you like to use Pattern Lab?',
-    default: false,
+    choices: ['None', 'PatternLab', 'Storybook'],
+    message: 'Which design system would you like to you',
+    default: 'None',
   },
   {
     type: 'confirm',
@@ -69,7 +70,7 @@ const componentPrompt = [
   {
     type: 'checkbox',
     name: 'files',
-    choices: ['sass', 'typescript', 'json', 'twig', 'markdown'],
+    choices: ['sass', 'typescript', 'json', 'twig', 'markdown', 'stories'],
     message: 'Choose the files you to generate?',
   },
 ];
@@ -77,7 +78,8 @@ const componentPrompt = [
 module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
-    this.props = null;
+    this.taskProps = null;
+    this.themeProps = null;
     this.theme = null;
     this.deps = [];
     this.plValue = {
@@ -91,21 +93,21 @@ module.exports = class extends Generator {
 
   async prompting() {
     return this.prompt(taskPrompt).then((props) => {
-      this.props = props;
+      this.taskProps = props;
     });
   }
 
   async writing() {
-    const { task } = this.props;
+    const { task } = this.taskProps;
 
     if (task === 'theme') {
-      const props = await this.prompt(themePrompt);
-      this._generateTheme(props);
+      this.themeProps = await this.prompt(themePrompt);
+      this._generateTheme(this.themeProps);
     } else if (task === 'component') {
       const files = fs.readdirSync(process.cwd());
-      if (!files.find((i) => i.indexOf('patterns') > -1)) {
+      if (!files.find((i) => i.indexOf('components') > -1)) {
         console.error(
-          chalk.red("There isn't any patterns directory in this path"),
+          chalk.red("There isn't any components directory in this path"),
         );
         process.exit(1);
       }
@@ -126,7 +128,21 @@ module.exports = class extends Generator {
     }
   }
 
-  end() {}
+  end() {
+    if (this.taskProps.task === 'theme') {
+      const packageJSON = path.join(process.cwd(), this.theme, 'package.json');
+      const packageContents = JSON.parse(fs.readFileSync(packageJSON, 'utf8'));
+      if (this.themeProps.pl === 'PatternLab') {
+        packageContents.scripts.postinstall =
+          'npx crlf --set=LF node_modules/.bin/patternlab';
+      } else if (this.themeProps.pl === 'Storybook') {
+        packageContents.scripts.storybook = 'start-storybook -p 5253';
+        packageContents.scripts['build-storybook'] = 'build-storybook';
+      }
+
+      fs.writeFileSync(packageJSON, JSON.stringify(packageContents, null, 2));
+    }
+  }
 
   _generateTheme({ name, cypress, lighthouse, rtl, pl, ci }) {
     this.theme = name;
@@ -213,42 +229,18 @@ postCSSOptions.push(rtl());`;
     }
 
     if (pl) {
-      this.plValue = {
-        injectCss: `, 'inject:css'`,
-        injectJs: `, 'inject:js'`,
-        plServe: `'pl:serve', `,
-        plBuild: `\n'inject',\n'pl:build',`,
-        plTask: `'inject',\n'patternlab',`,
-      };
-      this.fs.copy(
-        this.templatePath('options/pl/copy/**'),
-        this.destinationPath(`${name}/`),
-        {
-          globOptions: {
-            dot: true,
-          },
-        },
-      );
-      this.fs.copy(
-        this.templatePath('options/pl/inject.js'),
-        this.destinationPath(`${name}/gulp-tasks/inject.js`),
-      );
-      this.fs.copy(
-        this.templatePath('options/pl/patternlab.js'),
-        this.destinationPath(`${name}/gulp-tasks/patternlab.js`),
-      );
-
-      this.deps.push(
-        ...[
-          '@pattern-lab/cli',
-          '@pattern-lab/core',
-          '@pattern-lab/engine-twig-php',
-          '@pattern-lab/starterkit-twig-demo',
-          '@pattern-lab/uikit-workshop',
-          'gulp-inject',
-          'sort-stream',
-        ],
-      );
+      switch (pl) {
+        case 'PatternLab':
+          this._generatePatternLab();
+          break;
+        case 'Storybook':
+          this._generateStorybook();
+          break;
+        case 'None':
+          break;
+        default:
+          break;
+      }
     }
 
     this.fs.copyTpl(
@@ -280,6 +272,73 @@ postCSSOptions.push(rtl());`;
     );
   }
 
+  _generatePatternLab() {
+    this.plValue = {
+      injectCss: `, 'inject:css'`,
+      injectJs: `, 'inject:js'`,
+      plServe: `'pl:serve', `,
+      plBuild: `\n'inject',\n'pl:build',`,
+      plTask: `'inject',\n'patternlab',`,
+    };
+    this.fs.copy(
+      this.templatePath('options/pl/copy/**'),
+      this.destinationPath(`${this.theme}/`),
+      {
+        globOptions: {
+          dot: true,
+        },
+      },
+    );
+    this.fs.copy(
+      this.templatePath('options/pl/inject.js'),
+      this.destinationPath(`${this.theme}/gulp-tasks/inject.js`),
+    );
+    this.fs.copy(
+      this.templatePath('options/pl/patternlab.js'),
+      this.destinationPath(`${this.theme}/gulp-tasks/patternlab.js`),
+    );
+
+    this.deps.push(
+      ...[
+        '@pattern-lab/cli',
+        '@pattern-lab/core',
+        '@pattern-lab/engine-twig-php',
+        '@pattern-lab/starterkit-twig-demo',
+        '@pattern-lab/uikit-workshop',
+        'gulp-inject',
+        'sort-stream',
+      ],
+    );
+  }
+
+  _generateStorybook() {
+    this.fs.copy(
+      this.templatePath('options/storybook/copy/**'),
+      this.destinationPath(`${this.theme}/.storybook/`),
+      {
+        globOptions: {
+          dot: true,
+        },
+      },
+    );
+    this.deps.push(
+      ...[
+        '@babel/core',
+        'babel-loader',
+        '@storybook/addon-a11y',
+        '@storybook/addon-actions',
+        '@storybook/addon-docs',
+        '@storybook/addon-essentials',
+        '@storybook/addon-links',
+        '@storybook/html',
+        'add-attributes-twig-extension',
+        'twig',
+        'twig-drupal-filters',
+        `twig-loader@https://github.com/fourkitchens/twig-loader`,
+      ],
+    );
+  }
+
   _generateComponent(props) {
     const typeMap = {
       atom: '02-atoms',
@@ -295,10 +354,11 @@ postCSSOptions.push(rtl());`;
       json: 'json',
       yaml: 'yml',
       markdown: 'md',
+      stories: 'stories.js',
     };
     const componentPath = path.join(
       process.cwd(),
-      'patterns',
+      'components',
       typeMap[props.type],
       props.name,
     );
