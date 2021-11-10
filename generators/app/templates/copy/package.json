@@ -11,7 +11,7 @@
     "@types/gulp": "^4.0.9",
     "@types/gulp-sass": "^5.0.0",
     "@types/jquery": "^3.5.8",
-    "@types/node": "^16.10.3",
+    "@types/node": "^16.11.7",
     "@types/undertaker": "^1.2.7",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
