@@ -10,7 +10,7 @@ Install [Yeoman](http://yeoman.io) and generator-kashmir using [npm](https://www
 npm install -g yo generator-kashmir
 ```
 
-Then generate your new theme using the generator use the below command from the directory where you want the theme to be generated.
+Then generate your new theme using the generator. Use the below command from the directory where you want the theme to be generated.
 
 ```bash
 yo kashmir
@@ -21,7 +21,7 @@ yo kashmir
 
 ## Design systems
 
-The theme provides storybook and patternlab as two options for design systems as part of this theme. During the setup you can choose to setup either one of the two.
+The theme provides two options for design systems, storybook and patternlab. These are included as part of the theme and you can choose one of the two during the theme generation process.
 
 Patternlab support has been continued as before and we have now also added Storybook.js support. The recommended option going forward would be to use storybook as it is more modern and supports component building for numerous JS frameworks.
 
@@ -29,7 +29,6 @@ Patternlab support has been continued as before and we have now also added Story
 
 ### Component generation
 ---
-
 
 Once theme is generated you can use the theme generator to build components for the theme.
 
@@ -47,22 +46,22 @@ The button component was created.
 ### Component structure
 ---
 The theme genertor would ask you which files you want to generate for the the component,
-- sass - will contain the styles for component
-- json - will contain the data for the component, ex: title, description.
-- twig - will contain the markup for the component
-- markdown - documentation
-- stories - the story js file
-- typescript - additional js file
+- sass - *will contain the styles for component*
+- json - *will contain the data for the component, ex: title, description.*
+- twig - *will contain the markup for the component*
+- markdown - *documentation*
+- stories - *the story js file*
+- typescript - *additional js file*
 
-Based on your component needs, choose which file you need. 
+Based on your component needs, choose which files you need. 
 
-Check the button component example provided with the theme.
+Please check the button component example provided with the theme.
 
 ## Build commands 
 
 ### Compile theme
 
-In order to compile the assets of the theme, this also includes compiling sass inside components, we use gulp,
+In order to compile the assets of the theme, this also compiles sass inside components,
 
 ```bash
 yarn gulp
