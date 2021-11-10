@@ -23,7 +23,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "gulp": "^4.0.2",
-    "gulp-eslint-new": "^0.4.0",
+    "gulp-eslint-new": "^0.6.0",
     "gulp-if": "^3.0.0",
     "gulp-imagemin": "7",
     "gulp-postcss": "^9.0.1",
