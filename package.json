@@ -1,8 +1,11 @@
 {
-  "name": "generator-kashmir",
+  "name": "kashmir",
   "version": "0.1.7",
   "description": "Generate Kashmir theme",
   "homepage": "https://github.com/axelerant/kashmir",
+  "bin": {
+    "kashmir": "./bin/kashmir.js"
+  },
   "author": {
     "name": "Bassam Ismail",
     "email": "skippednote@gmail.com",
@@ -11,7 +14,7 @@
   "files": [
     "generators"
   ],
-  "main": "generators/index.js",
+  "main": "./bin/kashmir.js",
   "keywords": [
     "drupal",
     "theme",
