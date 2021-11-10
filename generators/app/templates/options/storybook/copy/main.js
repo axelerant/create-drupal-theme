@@ -1,6 +1,6 @@
 const path = require('path');
 const { namespaces } = require('./setupTwig');
-const cssNamespace = path.resolve(__dirname, '../dist/css');
+const componentsNamespace = path.resolve(__dirname, '../dist/components');
 
 module.exports = {
   stories: [
@@ -14,11 +14,11 @@ module.exports = {
   ],
   webpackFinal: async (config, { configType }) => {
     config.resolve.alias = {
-      '@atoms': path.join(cssNamespace, '02-atoms'),
-      '@molecules': path.join(cssNamespace, '03-molecules'),
-      '@organisms': path.join(cssNamespace, '04-organisms'),
-      '@templates': path.join(cssNamespace, '05-templates'),
-      '@pages': path.join(cssNamespace, '06-pages'),
+      '@atoms': path.join(componentsNamespace, '02-atoms'),
+      '@molecules': path.join(componentsNamespace, '03-molecules'),
+      '@organisms': path.join(componentsNamespace, '04-organisms'),
+      '@templates': path.join(componentsNamespace, '05-templates'),
+      '@pages': path.join(componentsNamespace, '06-pages'),
     };
     config.module.rules.push({
       test: /\.twig$/,

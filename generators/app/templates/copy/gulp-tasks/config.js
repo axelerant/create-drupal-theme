@@ -2,7 +2,7 @@ module.exports = {
   scss: {
     source: ['components/**/[^_]*.scss'],
     all: ['components/**/*.scss'],
-    destination: 'dist/css',
+    destination: 'dist/components',
     options: {
       outputStyle: 'expanded',
       includePaths: ['./node_modules'],
@@ -12,7 +12,7 @@ module.exports = {
   },
   ts: {
     source: ['components/**/*.ts'],
-    destination: 'dist/js',
+    destination: 'dist/components',
   },
   svg: {
     source: ['svg/**/*.svg'],
