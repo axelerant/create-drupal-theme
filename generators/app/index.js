@@ -168,7 +168,7 @@ module.exports = class extends Generator {
     }
 
     this.fs.copy(
-      this.templatePath('copy/**'),
+      this.templatePath('copy/'),
       this.destinationPath(`${name}/`),
       {
         globOptions: {
