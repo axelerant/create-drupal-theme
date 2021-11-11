@@ -13,8 +13,8 @@ regions:
 
 libraries:
   - core/normalize
-  # - kashmir/global
-  # - kashmir/tailwind
+  # - <%= name %>/global
+  # - <%= name %>/tailwind
 
 components:
   namespaces:

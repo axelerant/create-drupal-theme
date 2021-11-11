@@ -83,3 +83,42 @@ In order to compile the assets of the theme, this also compiles sass inside comp
 ```bash
 yarn gulp
 ```
+
+### Global css
+
+The theme provides a `global.css` file which contains all the compiled css. The global.css file is part of the global library, and can is attached inside the `*.info.yml` file.
+
+Simply uncomment the libraries you are using,
+
+```
+libraries:
+  - core/normalize
+  # - <theme-name>/global
+  # - <theme-name>/tailwind
+```
+
+### RTL suport
+
+We use [postcss-rtlcss](https://www.npmjs.com/package/postcss-rtlcss) for RTL support. You simply right sass as you normally would, the theme compilation will take care of generating compatible RTL CSS.
+
+```bash
+// Input SASS
+
+h2 {
+    text-align: left;
+}
+
+// Generated CSS
+
+[dir="ltr"] h2 {
+  text-align: left;
+}
+
+[dir="rtl"] h2 {
+  text-align: right;
+}
+```
+
+### Image minification
+
+The theme provides inbuild minification via [gulp-imagemin](https://www.npmjs.com/package/gulp-imagemin). This is setup by default, all we have to do is to add the images under `/images` directory.
