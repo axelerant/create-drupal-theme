@@ -23,13 +23,13 @@ kashmir
 ## Design systems
 ---
 
-The theme provides two options for design systems, storybook and patternlab. These are included as part of the theme and you can choose one of the two during the theme generation process.
+The theme provides two options for design systems, [Storybook.js](https://storybook.js.org/) and [Patternlab](https://patternlab.io/). These are included as part of the theme and you can choose one of the two during the theme generation process.
 
-The recommended option going forward would be to use storybook as it is more modern and supports component building for numerous JS frameworks.
+The recommended option going forward would be to use Storybook as it is more modern and supports component building for numerous JS frameworks.
 
 ### Storybook.js
 
-[Storybook.js](https://storybook.js.org/) is a tool for UI development. It makes development faster and easier by isolating components. This allows you to work on one component at a time. You can develop entire UIs without needing to start up a complex dev stack, force certain data into your database, or navigate around your application.
+Refer [Storybook.js](https://storybook.js.org/) documentation for detailed documenation on creating stories.
 
 
 ### Compile and launch storybook
@@ -42,7 +42,7 @@ yarn storybook
 
 ### Patternlab
 
-[Patternlab](https://patternlab.io/) is a frontend workshop environment that helps you build, view, test, and showcase your design system's UI components.
+```Placeholder>>>>```
 
 ## Component generation
 ---
