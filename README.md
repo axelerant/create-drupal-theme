@@ -73,7 +73,8 @@ Based on your component needs, choose which files you need.
 
 Please check the button component example provided with the theme.
 
-## Build commands & theme features.
+## Build commands
+---
 
 ### Compile theme
 
@@ -95,6 +96,9 @@ libraries:
   # - <theme-name>/global
   # - <theme-name>/tailwind
 ```
+
+## Additional Tooling
+---
 
 ### RTL suport
 
@@ -133,3 +137,13 @@ There is no additional step needed, just add a `*.ts` file as and when needed an
 ### Linting & Prettier support
 
 Linting and prettier support is included, with standard defaults. Please check `.prettierrc`, `.eslintrc` `.eslintignore`.
+
+### Cypress testing support
+
+[Cypress testing framework](https://www.cypress.io/) has been integrated in the theme and a sample test `home.spec.js` is provided.
+
+You can launch cypress from the command line using the below command,
+
+```bash
+yarn cypress run
+```
