@@ -1,5 +1,4 @@
 const path = require('path');
-const { namespaces } = require('./setupTwig');
 const componentsNamespace = path.resolve(__dirname, '../dist/components');
 
 module.exports = {
@@ -14,6 +13,7 @@ module.exports = {
   ],
   webpackFinal: async (config, { configType }) => {
     config.resolve.alias = {
+      '@': componentsNamespace,
       '@atoms': path.join(componentsNamespace, '02-atoms'),
       '@molecules': path.join(componentsNamespace, '03-molecules'),
       '@organisms': path.join(componentsNamespace, '04-organisms'),
