@@ -1,7 +1,7 @@
 import { useEffect } from '@storybook/client-api';
 import { addDecorator } from '@storybook/html';
 import Twig from 'twig';
-import '../dist/css/global.css';
+import '@/global.css';
 import { setupTwig } from './setupTwig';
 import './_drupal.js';
 
