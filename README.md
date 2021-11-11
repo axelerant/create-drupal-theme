@@ -29,12 +29,10 @@ The recommended option going forward would be to use Storybook as it is more mod
 
 ### Storybook.js
 
-Refer [Storybook.js](https://storybook.js.org/) documentation for detailed documenation on creating stories.
+Refer [Storybook.js](https://storybook.js.org/) documentation for additional information about stories.
 
 
 ### Compile and launch storybook
-
-View the storybook.
 
 ```bash
 yarn storybook
@@ -42,7 +40,7 @@ yarn storybook
 
 ### Patternlab
 
-```Placeholder>>>>```
+```<<<< Placeholder >>>>```
 
 ## Component generation
 ---
@@ -59,6 +57,7 @@ Below is a example of generating story for *button* component,
 ? Choose the files you to generate? sass, json, twig, markdown, stories
 The button component was created.
 ```
+The button component is already included as an example and can be viewed as part of the storybook out-of-the-box.
 
 ### Component structure
 
@@ -74,7 +73,7 @@ Based on your component needs, choose which files you need.
 
 Please check the button component example provided with the theme.
 
-## Build commands 
+## Build commands & theme features.
 
 ### Compile theme
 
@@ -122,3 +121,15 @@ h2 {
 ### Image minification
 
 The theme provides inbuild minification via [gulp-imagemin](https://www.npmjs.com/package/gulp-imagemin). This is setup by default, all we have to do is to add the images under `/images` directory.
+
+### TypeScript support
+
+The Kashmir theme comes with support for [TypeScript](https://www.typescriptlang.org/). TypeScript provides all the features of JavaScript with additional features that come with strongly typed programming languages.
+
+The theme provides `main.ts` file as a sample, if you uncomment the typescript code, you could see the generated `main.js` file under `/dist`.
+
+There is no additional step needed, just add a `*.ts` file as and when needed and it shall be compiled by the theme.
+
+### Linting & Prettier support
+
+Linting and prettier support is included, with standard defaults. Please check `.prettierrc`, `.eslintrc` `.eslintignore`.
