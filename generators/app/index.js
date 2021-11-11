@@ -375,6 +375,20 @@ postCSSOptions.push(rtl());`;
         '',
       );
     });
+    if (props.files.includes('stories')) {
+      const contents = `import ${props.name}Template from './${props.name}.twig';
+import ${props.name}Data from './${props.name}.json';
+
+import '@${props.type}/${props.name}/${props.name}.css';
+
+export default { title: '${props.type}/${props.name}' };
+
+export const ${props.name} = () => ${props.name}Template(${props.name}Data);`;
+      fs.writeFileSync(
+        path.join(componentPath, `${props.name}.stories.js`),
+        contents,
+      );
+    }
 
     console.log(
       chalk.greenBright(
