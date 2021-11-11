@@ -1,24 +1,22 @@
-import React from 'react';
-
-import Button from './button.twig';
+import buttonTemplate from './button.twig';
+import buttonData from './button.json';
 import '@atoms/button/button.css';
-import data from './button.json';
 
 export default {
   title: 'Components/Button',
-  component: Button,
+  component: buttonTemplate,
 }
 
 export const Primary = () => (
-  Button({
-    button_title: data.button_title,
+  buttonTemplate({
+    button_title: buttonData.button_title,
     variant: 'primary',
   })
 );
 
 export const Secondary = () => (
-  Button({
-    button_title: data.button_title,
+  buttonTemplate({
+    button_title: buttonData.button_title,
     variant: 'secondary',
   })
 );
