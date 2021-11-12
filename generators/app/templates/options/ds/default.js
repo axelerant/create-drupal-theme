@@ -3,6 +3,6 @@ module.exports = (gulp) =>
     'default',
     gulp.series(
       'clean',
-      gulp.parallel('scss', 'ts', 'svg', 'lint', 'prettier', 'images'),<%- pl.plBuild %>
+      gulp.parallel('scss', 'ts', 'svg', 'lint', 'prettier', 'images'),<%- ds.dsBuild %>
     ),
   );

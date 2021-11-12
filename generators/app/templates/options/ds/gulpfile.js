@@ -9,8 +9,7 @@ const tasks = [
   'svg',
   'prettier',
   'lint',
-  'images',
-  <%- pl.plTask %>
+  'images',<%- ds.dsTask %>
   'default',
   'watch',
 ];
