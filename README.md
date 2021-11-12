@@ -172,6 +172,12 @@ You can launch cypress from the command line using the below command,
 yarn cypress run
 ```
 
+You can open cypress test runner by using,
+
+```bash
+yarn cypress open
+```
+
 ### Tailwind
 
 By default all themes generated will have tailwind related config but disabled by default. 
