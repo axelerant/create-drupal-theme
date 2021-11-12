@@ -1,20 +1,20 @@
-# Kashmir [![NPM version][npm-image]][npm-url]
-> A Drupal theme generator
+# Create Drupal Theme [![NPM version][npm-image]][npm-url]
+> A Drupal theme and component generator.
 
 ## Installation
 ---
 
-Install generator-kashmir using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+Install create-drupal-theme using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
 
 ```bash
-npm install -g generator-kashmir
+npm install -g create-drupal-theme
 ```
 
 Then generate your new theme using the generator. Use the below command from the directory where you want the theme to be generated.
 
 ```bash
-kashmir
+create-drupal-theme
 ```
 
 [npm-image]: https://badge.fury.io/js/generator-kashmir.svg
@@ -29,12 +29,18 @@ kashmir
 In order to compile the assets of the theme, this also compiles sass inside components,
 
 ```bash
-gulp
+yarn gulp
 ```
 
-### Global css
+### Global Libraries
 
-The theme provides a `global.css` file which contains all the compiled css. The global.css file is part of the global library, and can is attached inside the `*.info.yml` file.
+The theme provides a global CSS file at  `./components/global.scss` file which contains all the sitewide styles. 
+
+The generated file at `./dist/components/global.css` file is part of the global library, and can is attached inside the `*.info.yml` file.
+
+The theme provides a global TS file at `./components/global.ts` which contains all site wide javascript code. 
+
+The generated file at `./dist/components/global.js` file is part of the global library, and is attached inside the `*.info.yml` file.
 
 Simply uncomment the libraries you are using,
 
