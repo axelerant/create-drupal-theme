@@ -63,15 +63,33 @@ The recommended option going forward would be to use Storybook as it is more mod
 Refer [Storybook.js](https://storybook.js.org/) documentation for additional information about stories.
 
 
-### Compile and launch storybook
+#### Build Storybook
 
 ```bash
-yarn storybook
+yarn gulp
+```
+
+#### Build, Launch and watch Storybook
+
+```bash
+yarn gulp watch
 ```
 
 ### Patternlab
 
-```<<<< Placeholder >>>>```
+Refer [Patternlab](https://patternlab.io/docs/overview-of-patterns) documentation for additional information about patternlab.
+
+#### Build Patternlab
+
+```bash
+yarn gulp
+```
+
+#### Build, Launch and watch Patternlab
+
+```bash
+yarn gulp watch
+```
 
 ## Component generation
 ---
@@ -153,6 +171,14 @@ You can launch cypress from the command line using the below command,
 ```bash
 yarn cypress run
 ```
+
+### Tailwind
+
+By default all themes generated will have tailwind related config but disabled by default. 
+
+To enable tailwind support on your generated theme,
+
+
 
 ### Contribution guidelines
 
