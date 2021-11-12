@@ -20,6 +20,31 @@ kashmir
 [npm-image]: https://badge.fury.io/js/generator-kashmir.svg
 [npm-url]: https://npmjs.org/package/generator-kashmir
 
+
+## Build commands
+---
+
+### Compile theme
+
+In order to compile the assets of the theme, this also compiles sass inside components,
+
+```bash
+gulp
+```
+
+### Global css
+
+The theme provides a `global.css` file which contains all the compiled css. The global.css file is part of the global library, and can is attached inside the `*.info.yml` file.
+
+Simply uncomment the libraries you are using,
+
+```
+libraries:
+  - core/normalize
+  # - <theme-name>/global
+  # - <theme-name>/tailwind
+```
+
 ## Design systems
 ---
 
@@ -72,31 +97,6 @@ The theme genertor would ask you which files you want to generate for the the co
 Based on your component needs, choose which files you need. 
 
 Please check the button component example provided with the theme.
-
-## Build commands
----
-
-### Compile theme
-
-In order to compile the assets of the theme, this also compiles sass inside components,
-
-```bash
-yarn gulp
-```
-
-### Global css
-
-The theme provides a `global.css` file which contains all the compiled css. The global.css file is part of the global library, and can is attached inside the `*.info.yml` file.
-
-Simply uncomment the libraries you are using,
-
-```
-libraries:
-  - core/normalize
-  # - <theme-name>/global
-  # - <theme-name>/tailwind
-```
-
 ## Additional Tooling
 ---
 
