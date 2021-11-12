@@ -316,13 +316,20 @@ postCSSOptions.push(rtl());`;
     };
 
     this.fs.copy(
-      this.templatePath('options/storybook/copy/**'),
+      this.templatePath('options/storybook/copy/config/**'),
       this.destinationPath(`${this.theme}/.storybook/`),
       {
         globOptions: {
           dot: true,
         },
       },
+    );
+
+    this.fs.copy(
+      this.templatePath('options/storybook/copy/example/button.stories.js'),
+      this.destinationPath(
+        `${this.theme}/components/02-atoms/button/button.stories.js`,
+      ),
     );
 
     this.fs.copy(
