@@ -43,7 +43,7 @@ const themePrompt = [
   },
   {
     type: 'list',
-    name: 'pl',
+    name: 'designSystem',
     choices: ['None', 'PatternLab', 'Storybook'],
     message: 'Which design system would you like to you',
     default: 'None',
@@ -82,12 +82,12 @@ module.exports = class extends Generator {
     this.themeProps = null;
     this.theme = null;
     this.deps = [];
-    this.plValue = {
+    this.dsValue = {
       injectCss: ``,
       injectJs: ``,
-      plServe: ``,
-      plBuild: ``,
-      plTask: ``,
+      dsServe: ``,
+      dsBuild: ``,
+      dsTask: ``,
     };
   }
 
@@ -132,19 +132,16 @@ module.exports = class extends Generator {
     if (this.taskProps.task === 'theme') {
       const packageJSON = path.join(process.cwd(), this.theme, 'package.json');
       const packageContents = JSON.parse(fs.readFileSync(packageJSON, 'utf8'));
-      if (this.themeProps.pl === 'PatternLab') {
+      if (this.themeProps.designSystem === 'PatternLab') {
         packageContents.scripts.postinstall =
           'npx crlf --set=LF node_modules/.bin/patternlab';
-      } else if (this.themeProps.pl === 'Storybook') {
-        packageContents.scripts.storybook = 'start-storybook -p 5253';
-        packageContents.scripts['build-storybook'] = 'build-storybook';
       }
 
       fs.writeFileSync(packageJSON, JSON.stringify(packageContents, null, 2));
     }
   }
 
-  _generateTheme({ name, cypress, lighthouse, rtl, pl, ci }) {
+  _generateTheme({ name, cypress, lighthouse, rtl, designSystem, ci }) {
     this.theme = name;
     if (ci) {
       try {
@@ -228,19 +225,17 @@ postCSSOptions.push(rtl());`;
       this.deps.push('postcss-rtlcss');
     }
 
-    if (pl) {
-      switch (pl) {
-        case 'PatternLab':
-          this._generatePatternLab();
-          break;
-        case 'Storybook':
-          this._generateStorybook();
-          break;
-        case 'None':
-          break;
-        default:
-          break;
-      }
+    switch (designSystem) {
+      case 'PatternLab':
+        this._generatePatternLab();
+        break;
+      case 'Storybook':
+        this._generateStorybook();
+        break;
+      case 'None':
+        break;
+      default:
+        break;
     }
 
     this.fs.copyTpl(
@@ -250,21 +245,21 @@ postCSSOptions.push(rtl());`;
     );
 
     this.fs.copyTpl(
-      this.templatePath('options/pl/watch.js'),
+      this.templatePath('options/ds/watch.js'),
       this.destinationPath(`${name}/gulp-tasks/watch.js`),
-      { pl: this.plValue },
+      { ds: this.dsValue },
     );
 
     this.fs.copyTpl(
-      this.templatePath('options/pl/default.js'),
+      this.templatePath('options/ds/default.js'),
       this.destinationPath(`${name}/gulp-tasks/default.js`),
-      { pl: this.plValue },
+      { ds: this.dsValue },
     );
 
     this.fs.copyTpl(
-      this.templatePath('options/pl/gulpfile.js'),
+      this.templatePath('options/ds/gulpfile.js'),
       this.destinationPath(`${name}/gulpfile.js`),
-      { pl: this.plValue },
+      { ds: this.dsValue },
     );
 
     console.log(
@@ -273,15 +268,15 @@ postCSSOptions.push(rtl());`;
   }
 
   _generatePatternLab() {
-    this.plValue = {
+    this.dsValue = {
       injectCss: `, 'inject:css'`,
       injectJs: `, 'inject:js'`,
-      plServe: `'pl:serve', `,
-      plBuild: `\n'inject',\n'pl:build',`,
-      plTask: `'inject',\n'patternlab',`,
+      dsServe: `'pl:serve', `,
+      dsBuild: `\n'inject',\n'pl:build',`,
+      dsTask: `'inject',\n'patternlab',`,
     };
     this.fs.copy(
-      this.templatePath('options/pl/copy/**'),
+      this.templatePath('options/ds/copy/**'),
       this.destinationPath(`${this.theme}/`),
       {
         globOptions: {
@@ -290,11 +285,11 @@ postCSSOptions.push(rtl());`;
       },
     );
     this.fs.copy(
-      this.templatePath('options/pl/inject.js'),
+      this.templatePath('options/ds/inject.js'),
       this.destinationPath(`${this.theme}/gulp-tasks/inject.js`),
     );
     this.fs.copy(
-      this.templatePath('options/pl/patternlab.js'),
+      this.templatePath('options/ds/patternlab.js'),
       this.destinationPath(`${this.theme}/gulp-tasks/patternlab.js`),
     );
 
@@ -312,6 +307,14 @@ postCSSOptions.push(rtl());`;
   }
 
   _generateStorybook() {
+    this.dsValue = {
+      injectCss: ``,
+      injectJs: ``,
+      dsServe: `'sb:serve', `,
+      dsBuild: `\n'sb:build',`,
+      dsTask: `\n'storybook',`,
+    };
+
     this.fs.copy(
       this.templatePath('options/storybook/copy/**'),
       this.destinationPath(`${this.theme}/.storybook/`),
@@ -321,6 +324,12 @@ postCSSOptions.push(rtl());`;
         },
       },
     );
+
+    this.fs.copy(
+      this.templatePath('options/ds/storybook.js'),
+      this.destinationPath(`${this.theme}/gulp-tasks/storybook.js`),
+    );
+
     this.deps.push(
       ...[
         '@babel/core',
