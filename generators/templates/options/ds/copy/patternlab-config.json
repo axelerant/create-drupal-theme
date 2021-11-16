@@ -46,10 +46,10 @@
         "patternSectionSubgroup": "views/partials/patternSectionSubgroup.mustache",
         "viewall": "views/viewall.mustache"
       },
-      "js": "./dist/js",
+      "js": "./dist/components",
       "images": "./images",
       "fonts": "./fonts",
-      "css": "./dist/css",
+      "css": "./dist/components",
       "maps": "./dist/maps"
     },
     "public": {
@@ -58,10 +58,10 @@
       "data": "public/styleguide/data/",
       "annotations": "public/annotations/",
       "styleguide": "public/styleguide/",
-      "js": "public/js",
+      "js": "public/components",
       "images": "public/images",
       "fonts": "public/fonts",
-      "css": "public/css",
+      "css": "public/components",
       "maps": "public/maps"
     }
   },
