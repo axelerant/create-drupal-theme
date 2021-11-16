@@ -3,10 +3,10 @@ const path = require('path');
 const assert = require('yeoman-assert');
 const helpers = require('yeoman-test');
 
-describe('generator-kashmir:app', () => {
+describe('create-drupal-theme', () => {
   beforeAll(() =>
     helpers
-      .run(path.join(__dirname, '../generators/app'))
+      .run(path.join(__dirname, '../generators'))
       .withPrompts({ someAnswer: true }),
   );
 
