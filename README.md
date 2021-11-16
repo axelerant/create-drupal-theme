@@ -9,7 +9,8 @@
 
 ## Requirements
 
-- [Node.js](https://nodejs.org/) version 14 or above.
+- [Node.js](https://nodejs.org/) version 14 or above
+- [PHP](https://www.php.net/) version 7.2 or above
 - [npm](https://npmjs.com/package/npm)
 - [Yarn](https://yarnpkg.com/getting-started/install)
 
