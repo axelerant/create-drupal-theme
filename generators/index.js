@@ -40,7 +40,7 @@ const themePrompt = [
     type: 'list',
     name: 'designSystem',
     choices: ['None', 'PatternLab', 'Storybook'],
-    message: 'Which design system would you like to you',
+    message: 'Which design system would you like to use?',
     default: 'None',
   },
 ];
