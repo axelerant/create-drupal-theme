@@ -35,6 +35,7 @@ To choose between generating a theme or a component run:
 create-drupal-theme
 ```
 
+[![asciicast](https://asciinema.org/a/mnGegKyz7NoJhpCJlojnRGs7v.svg)](https://asciinema.org/a/mnGegKyz7NoJhpCJlojnRGs7v)
 ## Scripts
 
 ### `yarn start`
@@ -83,16 +84,7 @@ yarn start
 
 You can use the generator to interactively generate components. These components are structured following the Atom design conventions and require a `components` directory with your theme.
 
-Example generating a _button_ component:
-
-```bash
-╰─❯ create-drupal-theme
-? Please choose what you would like to generate? component
-? Please enter the component name: button
-? Choose the type of the component atom
-? Choose the files you to generate? sass, json, twig, markdown, stories
-The button component was created.
-```
+[![asciicast](https://asciinema.org/a/449461.svg)](https://asciinema.org/a/449461)
 
 ## Additional Tooling
 
