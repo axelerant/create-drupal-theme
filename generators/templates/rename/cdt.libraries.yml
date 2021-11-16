@@ -1,12 +1,12 @@
 global:
   css:
     theme:
-      dist/css/global.css: {}
+      dist/components/global.css: {}
   js:
-    dist/js/main.js:
+    dist/components/main.js:
       attributes:
         type: module
 # tailwind:
 #   css:
 #     theme:
-#       dist/css/tailwind.css: {}
+#       dist/components/tailwind.css: {}

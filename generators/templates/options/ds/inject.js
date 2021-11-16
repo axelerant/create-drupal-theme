@@ -4,7 +4,7 @@ const sort = require('sort-stream');
 module.exports = (gulp) => {
   gulp.task('inject:js', () => {
     const target = gulp.src('patternlab/_meta/js.twig');
-    const sources = gulp.src(['dist/js/**/*.js'], { read: false });
+    const sources = gulp.src(['dist/components/**/*.js'], { read: false });
 
     return target
       .pipe(
@@ -21,7 +21,7 @@ module.exports = (gulp) => {
 
   gulp.task('inject:css', () => {
     const target = gulp.src('patternlab/_meta/css.twig');
-    const sources = gulp.src(['dist/css/**/*.css'], { read: false });
+    const sources = gulp.src(['dist/components/**/*.css'], { read: false });
 
     return target
       .pipe(
