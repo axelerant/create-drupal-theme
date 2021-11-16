@@ -1,41 +1,91 @@
-# Kashmir [![NPM version][npm-image]][npm-url]
-> A Drupal theme generator
-
-## Installation
-
-Install [Yeoman](http://yeoman.io) and generator-kashmir using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
-
-
-```bash
-npm install -g yo generator-kashmir
-```
-
-Then generate your new theme using the generator. Use the below command from the directory where you want the theme to be generated.
-
-```bash
-yo kashmir
-```
+[![NPM version][npm-image]][npm-url]
 
 [npm-image]: https://badge.fury.io/js/generator-kashmir.svg
 [npm-url]: https://npmjs.org/package/generator-kashmir
 
-## Design systems
+# Create Drupal Theme
 
-The theme provides two options for design systems, storybook and patternlab. These are included as part of the theme and you can choose one of the two during the theme generation process.
+> A Drupal Theme and Component generator.
 
-Patternlab support has been continued as before and we have now also added Storybook.js support. The recommended option going forward would be to use storybook as it is more modern and supports component building for numerous JS frameworks.
+## Requirements
 
-## Storybook.js
+- [Node.js](https://nodejs.org/) version 14 or above.
+- [npm](https://npmjs.com/package/npm)
+- [Yarn](https://yarnpkg.com/getting-started/install)
 
-### Component generation
----
+## Installation
 
-Once theme is generated you can use the theme generator to build components for the theme.
+- Using npm
 
-Below is a example of generating story for *button* component,
+  ```bash
+  npm install -g create-drupal-theme
+  ```
+
+- Using yarn
+  ```bash
+  yarn global add create-drupal-theme
+  ```
+
+## Usage
+
+To choose between generating a theme or a component run:
 
 ```bash
-╰─❯ yo kashmir
+create-drupal-theme
+```
+
+## Scripts
+
+### `yarn start`
+
+This will first build all your assets and then start watching for changes. In case you are using a design system, it will build the system and then start the development server.
+
+The linting tasks are run development mode, so you will get errors in your terminal but it won't exit the process.
+
+### `yarn build`
+
+This will build all the assets in production mode. It will optimize certain assets to reduce their size.
+
+The linting tasks are run in production mode and if there are errors the process will exit. This should be used on CI and when shipping to a production-like environment.
+
+## Design systems
+
+The theme provides two options for design systems, [Storybook](https://storybook.js.org/) and [Patternlab](https://patternlab.io/). You can choose which design system you would like to opt for during the theme generation process.
+
+We recommend using Storybook as it supports multiple JavaScript frameworks and doesn't have a dependency on PHP.
+
+### Storybook
+
+You can refer to the [Storybook](https://storybook.js.org/) documentation to know more about how it works.
+
+If you have opted for Storybook as the design system for your theme, the generator will automatically include all the relevant configurations and packages. It will also update the `start` and `build` commands.
+
+- `yarn start`: To start the Storybook server on port 3000.
+- `yarn build`: To build the Storybook assets. These can be found in the `storybook-static` directory.
+
+### Patternlab
+
+You can refer to the [Pattern Lab](https://patternlab.io/) documentation to know more about how it works.
+
+If you have opted for PatternLab as the design system for your theme, the generator will automatically include all the relevant configurations and packages. It will also update the `start` and `build` commands.
+
+- `yarn start`: To start the Pattern Lab server on port 3000.
+- `yarn build`: To build the Pattern Lab assets. These can be found in the `public` directory.
+
+#### Build, Launch and watch Patternlab
+
+```bash
+yarn start
+```
+
+## Component generation
+
+You can use the generator to interactively generate components. These components are structured following the Atom design conventions and require a `components` directory with your theme.
+
+Example generating a _button_ component:
+
+```bash
+╰─❯ create-drupal-theme
 ? Please choose what you would like to generate? component
 ? Please enter the component name: button
 ? Choose the type of the component atom
@@ -43,34 +93,92 @@ Below is a example of generating story for *button* component,
 The button component was created.
 ```
 
-### Component structure
----
-The theme genertor would ask you which files you want to generate for the the component,
-- sass - *will contain the styles for component*
-- json - *will contain the data for the component, ex: title, description.*
-- twig - *will contain the markup for the component*
-- markdown - *documentation*
-- stories - *the story js file*
-- typescript - *additional js file*
+## Additional Tooling
 
-Based on your component needs, choose which files you need. 
+### RTL support
 
-Please check the button component example provided with the theme.
+We use [postcss-rtlcss](https://www.npmjs.com/package/postcss-rtlcss) for RTL support. You don't need to explicitly write your styles to support both LTR and RTL. You just target LTR and the theme compilation will take care of generating compatible RTL styles.
 
-## Build commands 
+**Input styles**
 
-### Compile theme
-
-In order to compile the assets of the theme, this also compiles sass inside components,
-
-```bash
-yarn gulp
+```css
+h2 {
+  text-align: left;
+}
 ```
 
-### Compile and launch storybook
+**Generated styles**
 
-View the storybook.
-
-```bash
-yarn storybook
 ```
+[dir="ltr"] h2 {
+  text-align: left;
+}
+
+[dir="rtl"] h2 {
+  text-align: right;
+}
+```
+
+### Image Optimization
+
+The theme uses [gulp-imagemin](https://www.npmjs.com/package/gulp-imagemin) for optimizing your images. This is set up out of the box, all we have to do is to add images under the `/images` directory.
+
+### TypeScript support
+
+The theme comes supports and recommends using [TypeScript](https://www.typescriptlang.org/). TypeScript provides all the features of JavaScript with additional features that come with strongly typed programming languages.
+
+The TypeScript files would be placed within the `components` directory. On running the `start` or `build` scripts the compiled asset is placed in the `dist` directory.
+
+### Linting & Code Formatting support
+
+Linting and code formatting support are included, with standard defaults. You can find the configuration in the following files: `.prettierrc`, `.eslintrc`, and `.stylelintrc`.
+
+All the `scss`, `css`, `ts`, `js`, `json`, and `yml` files listed under the `components` directory are lint and formatted.
+
+### Cypress support
+
+[Cypress](https://www.cypress.io/) has been integrated with the theme and a sample test `home.spec.js` is provided.
+
+- `yarn cypress run`: To can run cypress tests from the terminal.
+- `yarn cypress open`: To start the visual browser-based test runner.
+
+### Tailwind
+
+The generated themes let you choose between writing custom stylesheets using Sass or using [TailwindCSS](https://tailwindcss.com/) instead. The generated TailwindCSS style is included in both the design systems and doesn't need any additional efforts.
+
+To enable TailwindCSS support on your generated theme:
+
+- Uncomment the contents of `tailwind.scss` inside the `components` directory.
+- Uncomment the tailwind library declaration in `.libraries.yml`
+  ```bash
+  tailwind:
+    css:
+      theme:
+        dist/components/tailwind.css: {}
+  ```
+- Enable the attachment of the library in `.info.yml` file.
+
+  ```bash
+  libraries:
+    - core/normalize
+  #  - <theme-name>/global
+    - <theme-name>/tailwind
+  ```
+
+- We have integrated the default Tailwind setup, you can customize and optimize the integration. You can refer to [Customising Tailwind](https://tailwindcss.com/docs/installation#customizing-your-configuration) and [Optimising for production](https://tailwindcss.com/docs/optimizing-for-production) sections in the official documentation.
+- Use the `build` script to generate an optimized build of the TailwindCSS stylesheet. TailwindCSS's `purge` directive is configured to generate only the relevant CSS classes used in the `components` and `templates` directories.
+- The theme uses `core/normalize` from Drupal to introduce the reset styles. To avoid conflicts we have disabled the resets TailwindCSS generates in the `tailwind.config.js` file.
+
+## Contribution guidelines
+
+**Did you find a bug?**
+
+- **Ensure the bug was not already reported** by searching on GitHub under [Issues](https://github.com/axelerant/kashmir/issues).
+
+- If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/axelerant/kashmir/issues/new). Be sure to include a **title and clear description**, as much relevant information as possible, and a **code sample** or a **scenario** demonstrating the expected behavior that is not occurring.
+
+**Did you write a patch that fixes a bug?**
+
+- Open a new GitHub pull request with the patch.
+
+- Ensure the PR description clearly describes the problem and solution. Include the relevant issue number if applicable.

@@ -1,5 +1,8 @@
 module.exports = {
-  purge: ['components/**/*.{html,twig,scss,css,js,ts}'],
+  purge: [
+    'components/**/*.{html,twig,scss,css,js,ts}',
+    'templates/**/*.{twig}',
+  ],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
@@ -8,4 +11,7 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  corePlugins: {
+    preflight: false,
+  },
 };
