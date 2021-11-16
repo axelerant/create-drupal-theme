@@ -13,8 +13,8 @@ regions:
 
 libraries:
   - core/normalize
-  # - cdt/global
-  # - cdt/tailwind
+  # - <%= name %>/global
+  # - <%= name %>/tailwind
 
 components:
   namespaces:
