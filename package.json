@@ -1,20 +1,20 @@
 {
-  "name": "kashmir",
-  "version": "0.1.7",
-  "description": "Generate Kashmir theme",
-  "homepage": "https://github.com/axelerant/kashmir",
+  "name": "create-drupal-theme",
+  "version": "1.0.0",
+  "description": "Create Drupal Theme",
+  "homepage": "https://github.com/axelerant/create-drupal-theme",
   "bin": {
-    "kashmir": "./bin/kashmir.js"
+    "create-drupal-theme": "./bin/create-drupal-theme.js"
   },
   "author": {
     "name": "Bassam Ismail",
     "email": "skippednote@gmail.com",
-    "url": "https://skippednote.dev"
+    "url": "https://skippednote.com"
   },
   "files": [
     "generators"
   ],
-  "main": "./bin/kashmir.js",
+  "main": "./bin/create-drupal-theme.js",
   "keywords": [
     "drupal",
     "theme",
@@ -86,6 +86,6 @@
     "test": "jest",
     "commit": "commit"
   },
-  "repository": "skippednote/generator-kashmir",
+  "repository": "skippednote/create-drupal-theme",
   "license": "MIT"
 }

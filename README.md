@@ -1,7 +1,7 @@
 [![NPM version][npm-image]][npm-url]
 
-[npm-image]: https://badge.fury.io/js/generator-kashmir.svg
-[npm-url]: https://npmjs.org/package/generator-kashmir
+[npm-image]: https://badge.fury.io/js/create-drupal-theme.svg
+[npm-url]: https://npmjs.org/package/create-drupal-theme
 
 # Create Drupal Theme
 

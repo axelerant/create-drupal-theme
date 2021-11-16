@@ -140,22 +140,22 @@ module.exports = class extends Generator {
     });
 
     this.fs.copyTpl(
-      this.templatePath('rename/kashmir.breakpoints.yml'),
+      this.templatePath('rename/cdt.breakpoints.yml'),
       this.destinationPath(`${name}/${name}.breakpoints.yml`),
       { name },
     );
     this.fs.copyTpl(
-      this.templatePath('rename/kashmir.info.yml'),
+      this.templatePath('rename/cdt.info.yml'),
       this.destinationPath(`${name}/${name}.info.yml`),
       { name },
     );
     this.fs.copyTpl(
-      this.templatePath('rename/kashmir.libraries.yml'),
+      this.templatePath('rename/cdt.libraries.yml'),
       this.destinationPath(`${name}/${name}.libraries.yml`),
       { name },
     );
     this.fs.copyTpl(
-      this.templatePath('rename/kashmir.theme'),
+      this.templatePath('rename/cdt.theme'),
       this.destinationPath(`${name}/${name}.theme`),
       { name },
     );
