@@ -1,12 +1,7 @@
 const Generator = require('yeoman-generator');
-const { execSync } = require('child_process');
 const chalk = require('chalk');
 const path = require('path');
 const fs = require('fs');
-
-let fileContent = fs
-  .readFileSync(path.join(__dirname, './templates/options/ci/frontend.yml'))
-  .toString();
 
 const taskPrompt = [
   {
@@ -47,12 +42,6 @@ const themePrompt = [
     choices: ['None', 'PatternLab', 'Storybook'],
     message: 'Which design system would you like to you',
     default: 'None',
-  },
-  {
-    type: 'confirm',
-    name: 'ci',
-    message: 'Would you like to update the .gitlab-ci.yml file?',
-    default: false,
   },
 ];
 const componentPrompt = [
@@ -141,59 +130,32 @@ module.exports = class extends Generator {
     }
   }
 
-  _generateTheme({ name, cypress, lighthouse, rtl, designSystem, ci }) {
+  _generateTheme({ name, cypress, lighthouse, rtl, designSystem }) {
     this.theme = name;
-    if (ci) {
-      try {
-        const gitRoot = execSync('git rev-parse --show-toplevel')
-          .toString()
-          .trim();
-        const ciFilePath = path.join(gitRoot, '.gitlab-ci.yml');
-        if (fs.existsSync(ciFilePath)) {
-          fileContent = fileContent.replace(/THEME_NAME/g, name);
-          fs.appendFileSync(ciFilePath, fileContent);
-        } else {
-          fs.writeFileSync(ciFilePath, fileContent);
-        }
-      } catch {
-        console.error(
-          chalk.red(
-            `This project doesn't have a ${chalk.greenBright(
-              '.gitlab-ci.yml',
-            )} in the root directory.`,
-          ),
-        );
-        process.exit(1);
-      }
-    }
 
-    this.fs.copy(
-      this.templatePath('copy/**'),
-      this.destinationPath(`${name}/`),
-      {
-        globOptions: {
-          dot: true,
-        },
+    this.fs.copy(this.templatePath('copy/'), this.destinationPath(`${name}/`), {
+      globOptions: {
+        dot: true,
       },
-    );
+    });
 
     this.fs.copyTpl(
-      this.templatePath('rename/kashmir.breakpoints.yml'),
+      this.templatePath('rename/cdt.breakpoints.yml'),
       this.destinationPath(`${name}/${name}.breakpoints.yml`),
       { name },
     );
     this.fs.copyTpl(
-      this.templatePath('rename/kashmir.info.yml'),
+      this.templatePath('rename/cdt.info.yml'),
       this.destinationPath(`${name}/${name}.info.yml`),
       { name },
     );
     this.fs.copyTpl(
-      this.templatePath('rename/kashmir.libraries.yml'),
+      this.templatePath('rename/cdt.libraries.yml'),
       this.destinationPath(`${name}/${name}.libraries.yml`),
       { name },
     );
     this.fs.copyTpl(
-      this.templatePath('rename/kashmir.theme'),
+      this.templatePath('rename/cdt.theme'),
       this.destinationPath(`${name}/${name}.theme`),
       { name },
     );
@@ -316,13 +278,20 @@ postCSSOptions.push(rtl());`;
     };
 
     this.fs.copy(
-      this.templatePath('options/storybook/copy/**'),
+      this.templatePath('options/storybook/copy/config/**'),
       this.destinationPath(`${this.theme}/.storybook/`),
       {
         globOptions: {
           dot: true,
         },
       },
+    );
+
+    this.fs.copy(
+      this.templatePath('options/storybook/copy/example/button.stories.js'),
+      this.destinationPath(
+        `${this.theme}/components/02-atoms/button/button.stories.js`,
+      ),
     );
 
     this.fs.copy(
