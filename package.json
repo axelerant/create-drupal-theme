@@ -1,6 +1,6 @@
 {
   "name": "create-drupal-theme",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create Drupal Theme",
   "homepage": "https://github.com/axelerant/create-drupal-theme",
   "bin": {
@@ -86,6 +86,6 @@
     "test": "jest",
     "commit": "commit"
   },
-  "repository": "skippednote/create-drupal-theme",
+  "repository": "axelerant/create-drupal-theme",
   "license": "MIT"
 }
