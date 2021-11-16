@@ -18,8 +18,8 @@ libraries:
 
 components:
   namespaces:
-    atoms: components/02-atoms
-    molecules: components/03-molecules
-    organisms: components/04-organisms
-    templates: components/05-templates
-    pages: components/06-pages
+    atoms: components/atoms
+    molecules: components/molecules
+    organisms: components/organisms
+    templates: components/templates
+    pages: components/pages

@@ -14,11 +14,11 @@ module.exports = {
   webpackFinal: async (config, { configType }) => {
     config.resolve.alias = {
       '@': componentsNamespace,
-      '@atoms': path.join(componentsNamespace, '02-atoms'),
-      '@molecules': path.join(componentsNamespace, '03-molecules'),
-      '@organisms': path.join(componentsNamespace, '04-organisms'),
-      '@templates': path.join(componentsNamespace, '05-templates'),
-      '@pages': path.join(componentsNamespace, '06-pages'),
+      '@atoms': path.join(componentsNamespace, 'atoms'),
+      '@molecules': path.join(componentsNamespace, 'molecules'),
+      '@organisms': path.join(componentsNamespace, 'organisms'),
+      '@templates': path.join(componentsNamespace, 'templates'),
+      '@pages': path.join(componentsNamespace, 'pages'),
     };
     config.module.rules.push({
       test: /\.twig$/,
@@ -27,23 +27,23 @@ module.exports = {
           loader: 'twig-loader',
           options: {
             twigOptions: {
-              atoms: path.resolve(__dirname, '../', 'components/02-atoms'),
+              atoms: path.resolve(__dirname, '../', 'components/atoms'),
               molecules: path.resolve(
                 __dirname,
                 '../',
-                'components/03-molecules',
+                'components/molecules',
               ),
               organisms: path.resolve(
                 __dirname,
                 '../',
-                'components/04-organisms',
+                'components/organisms',
               ),
               templates: path.resolve(
                 __dirname,
                 '../',
-                'components/05-templates',
+                'components/templates',
               ),
-              pages: path.resolve(__dirname, '../', 'components/06-pages'),
+              pages: path.resolve(__dirname, '../', 'components/pages'),
             },
           },
         },

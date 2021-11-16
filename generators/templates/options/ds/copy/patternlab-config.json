@@ -101,37 +101,37 @@
         {
           "id": "config",
           "recursive": true,
-          "paths": ["components/00-config"]
+          "paths": ["components/config"]
         },
         {
           "id": "base",
           "recursive": true,
-          "paths": ["components/01-base"]
+          "paths": ["components/base"]
         },
         {
           "id": "atoms",
           "recursive": true,
-          "paths": ["components/02-atoms"]
+          "paths": ["components/atoms"]
         },
         {
           "id": "molecules",
           "recursive": true,
-          "paths": ["components/03-molecules"]
+          "paths": ["components/molecules"]
         },
         {
           "id": "organisms",
           "recursive": true,
-          "paths": ["components/04-organisms"]
+          "paths": ["components/organisms"]
         },
         {
           "id": "templates",
           "recursive": true,
-          "paths": ["components/05-templates"]
+          "paths": ["components/templates"]
         },
         {
           "id": "pages",
           "recursive": true,
-          "paths": ["components/06-pages"]
+          "paths": ["components/pages"]
         },
         {
           "id": "macros",
