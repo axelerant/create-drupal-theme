@@ -2,6 +2,7 @@ const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const path = require('path');
 const fs = require('fs');
+const { execSync } = require('child_process');
 
 const taskPrompt = [
   {
@@ -124,6 +125,12 @@ module.exports = class extends Generator {
       if (this.themeProps.designSystem === 'PatternLab') {
         packageContents.scripts.postinstall =
           'npx crlf --set=LF node_modules/.bin/patternlab';
+        execSync(
+          `npx crlf --set=LF ${this.theme}/node_modules/.bin/patternlab`,
+          {
+            stdio: 'ignore',
+          },
+        );
       }
 
       fs.writeFileSync(packageJSON, JSON.stringify(packageContents, null, 2));
