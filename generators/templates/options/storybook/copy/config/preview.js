@@ -2,6 +2,7 @@ import { useEffect } from '@storybook/client-api';
 import { addDecorator } from '@storybook/html';
 import Twig from 'twig';
 import '@/global.css';
+import '@/tailwind.css';
 import { setupTwig } from './setupTwig';
 import './_drupal.js';
 
