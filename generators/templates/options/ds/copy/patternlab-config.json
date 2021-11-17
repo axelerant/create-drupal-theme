@@ -46,10 +46,10 @@
         "patternSectionSubgroup": "views/partials/patternSectionSubgroup.mustache",
         "viewall": "views/viewall.mustache"
       },
-      "js": "./dist/js",
+      "js": "./dist/components",
       "images": "./images",
       "fonts": "./fonts",
-      "css": "./dist/css",
+      "css": "./dist/components",
       "maps": "./dist/maps"
     },
     "public": {
@@ -58,10 +58,10 @@
       "data": "public/styleguide/data/",
       "annotations": "public/annotations/",
       "styleguide": "public/styleguide/",
-      "js": "public/js",
+      "js": "public/components",
       "images": "public/images",
       "fonts": "public/fonts",
-      "css": "public/css",
+      "css": "public/components",
       "maps": "public/maps"
     }
   },
@@ -101,37 +101,37 @@
         {
           "id": "config",
           "recursive": true,
-          "paths": ["components/00-config"]
+          "paths": ["components/config"]
         },
         {
           "id": "base",
           "recursive": true,
-          "paths": ["components/01-base"]
+          "paths": ["components/base"]
         },
         {
           "id": "atoms",
           "recursive": true,
-          "paths": ["components/02-atoms"]
+          "paths": ["components/atoms"]
         },
         {
           "id": "molecules",
           "recursive": true,
-          "paths": ["components/03-molecules"]
+          "paths": ["components/molecules"]
         },
         {
           "id": "organisms",
           "recursive": true,
-          "paths": ["components/04-organisms"]
+          "paths": ["components/organisms"]
         },
         {
           "id": "templates",
           "recursive": true,
-          "paths": ["components/05-templates"]
+          "paths": ["components/templates"]
         },
         {
           "id": "pages",
           "recursive": true,
-          "paths": ["components/06-pages"]
+          "paths": ["components/pages"]
         },
         {
           "id": "macros",

@@ -2,6 +2,7 @@ const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const path = require('path');
 const fs = require('fs');
+const { execSync } = require('child_process');
 
 const taskPrompt = [
   {
@@ -124,6 +125,12 @@ module.exports = class extends Generator {
       if (this.themeProps.designSystem === 'PatternLab') {
         packageContents.scripts.postinstall =
           'npx crlf --set=LF node_modules/.bin/patternlab';
+        execSync(
+          `npx crlf --set=LF ${this.theme}/node_modules/.bin/patternlab`,
+          {
+            stdio: 'ignore',
+          },
+        );
       }
 
       fs.writeFileSync(packageJSON, JSON.stringify(packageContents, null, 2));
@@ -290,7 +297,7 @@ postCSSOptions.push(rtl());`;
     this.fs.copy(
       this.templatePath('options/storybook/copy/example/button.stories.js'),
       this.destinationPath(
-        `${this.theme}/components/02-atoms/button/button.stories.js`,
+        `${this.theme}/components/atoms/button/button.stories.js`,
       ),
     );
 
@@ -319,11 +326,11 @@ postCSSOptions.push(rtl());`;
 
   _generateComponent(props) {
     const typeMap = {
-      atom: '02-atoms',
-      molecule: '03-molecules',
-      organism: '04-organisms',
-      template: '05-templates',
-      page: '06-pages',
+      atom: 'atoms',
+      molecule: 'molecules',
+      organism: 'organisms',
+      template: 'templates',
+      page: 'pages',
     };
     const fileMap = {
       sass: 'scss',

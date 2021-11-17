@@ -62,7 +62,7 @@ You can refer to the [Storybook](https://storybook.js.org/) documentation to kno
 
 If you have opted for Storybook as the design system for your theme, the generator will automatically include all the relevant configurations and packages. It will also update the `start` and `build` commands.
 
-- `yarn start`: To start the Storybook server on port 3000.
+- `yarn start`: To start the Storybook server on port 3000 and watch for changes.
 - `yarn build`: To build the Storybook assets. These can be found in the `storybook-static` directory.
 
 ### Patternlab
@@ -71,14 +71,8 @@ You can refer to the [Pattern Lab](https://patternlab.io/) documentation to know
 
 If you have opted for PatternLab as the design system for your theme, the generator will automatically include all the relevant configurations and packages. It will also update the `start` and `build` commands.
 
-- `yarn start`: To start the Pattern Lab server on port 3000.
+- `yarn start`: To start the Pattern Lab server on port 3000 and watch for changes.
 - `yarn build`: To build the Pattern Lab assets. These can be found in the `public` directory.
-
-#### Build, Launch and watch Patternlab
-
-```bash
-yarn start
-```
 
 ## Component generation
 
@@ -166,9 +160,9 @@ To enable TailwindCSS support on your generated theme:
 
 **Did you find a bug?**
 
-- **Ensure the bug was not already reported** by searching on GitHub under [Issues](https://github.com/axelerant/kashmir/issues).
+- **Ensure the bug was not already reported** by searching on GitHub under [Issues](https://github.com/axelerant/create-drupal-theme/issues).
 
-- If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/axelerant/kashmir/issues/new). Be sure to include a **title and clear description**, as much relevant information as possible, and a **code sample** or a **scenario** demonstrating the expected behavior that is not occurring.
+- If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/axelerant/create-drupal-theme/issues/new). Be sure to include a **title and clear description**, as much relevant information as possible, and a **code sample** or a **scenario** demonstrating the expected behavior that is not occurring.
 
 **Did you write a patch that fixes a bug?**
 
