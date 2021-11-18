@@ -53,16 +53,16 @@
       "maps": "./dist/maps"
     },
     "public": {
-      "root": "public/",
-      "patterns": "public/components/",
-      "data": "public/styleguide/data/",
-      "annotations": "public/annotations/",
-      "styleguide": "public/styleguide/",
-      "js": "public/components",
-      "images": "public/images",
-      "fonts": "public/fonts",
-      "css": "public/components",
-      "maps": "public/maps"
+      "root": "dist/public/",
+      "patterns": "dist/public/patterns/",
+      "data": "dist/public/styleguide/data/",
+      "annotations": "dist/public/annotations/",
+      "styleguide": "dist/public/styleguide/",
+      "js": "dist/public/components",
+      "images": "dist/public/images",
+      "fonts": "dist/public/fonts",
+      "css": "dist/public/components",
+      "maps": "dist/public/maps"
     }
   },
   "patternExtension": "twig",
