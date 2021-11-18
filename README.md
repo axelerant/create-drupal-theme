@@ -72,7 +72,7 @@ You can refer to the [Pattern Lab](https://patternlab.io/) documentation to know
 If you have opted for PatternLab as the design system for your theme, the generator will automatically include all the relevant configurations and packages. It will also update the `start` and `build` commands.
 
 - `yarn start`: To start the Pattern Lab server on port 3000 and watch for changes.
-- `yarn build`: To build the Pattern Lab assets. These can be found in the `public` directory.
+- `yarn build`: To build the Pattern Lab assets. These can be found in the `dist/public` directory.
 
 ## Component generation
 
