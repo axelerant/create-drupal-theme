@@ -11,7 +11,7 @@ base:
       /path/to/base/style.css
 ```
 
-Attach the base library globally i nthe themename.info.yml file
+Attach the base library globally in the themename.info.yml file
 
 ```
 libraries:
