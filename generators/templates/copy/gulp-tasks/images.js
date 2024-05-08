@@ -1,6 +1,6 @@
-const imagemin = require('gulp-imagemin');
+import imagemin from 'gulp-imagemin';
 
-module.exports = (gulp, config) => {
+export default (gulp, config) => {
   gulp.task('images', () =>
     gulp
       .src(config.images.source)

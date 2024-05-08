@@ -1,17 +1,20 @@
-const autoprefixer = require('autoprefixer');
+import autoprefixer from 'autoprefixer';
 const cssnano = require('cssnano');
-const postcss = require('gulp-postcss');
-const sass = require('gulp-sass')(require('sass'));
-const sassGlob = require('gulp-sass-glob');
-const sourcemaps = require('gulp-sourcemaps');
-const tailwind = require('tailwindcss');
-const gulpIf = require('gulp-if');
+import postcss from 'gulp-postcss';
+import dartSass from 'sass'
+import gulpSass from 'gulp-sass'
+const sass = gulpSass(dartSass);
+import sassGlob from 'gulp-sass-glob';
+import sassGlob from 'gulp-sass-glob';
+import sourcemaps from 'gulp-sourcemaps';
+import tailwind from 'tailwindcss';
+import gulpIf from 'gulp-if';
 
 const isLocal = typeof process.env.CI === 'undefined';
 const postCSSOptions = [autoprefixer(), tailwind()];
-<%- rtlValue %>
+// <%- rtlValue %>
 
-module.exports = (gulp, config) => {
+export default (gulp, config) => {
   gulp.task('scss', () =>
     gulp
       .src(...config.scss.source)
