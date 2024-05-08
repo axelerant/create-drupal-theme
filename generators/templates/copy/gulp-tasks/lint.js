@@ -1,7 +1,7 @@
-const stylelint = require('gulp-stylelint');
-const eslint = require('gulp-eslint-new');
-const gulpIf = require('gulp-if');
-const typescript = require('gulp-typescript');
+import stylelint from 'gulp-stylelint';
+import eslint from 'gulp-eslint-new';
+import gulpIf from 'gulp-if';
+import typescript from 'gulp-typescript';
 const ts = typescript.createProject('tsconfig.json', { noEmit: true });
 
 module.exports = (gulp, config) => {

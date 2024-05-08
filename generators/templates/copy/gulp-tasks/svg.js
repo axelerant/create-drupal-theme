@@ -1,7 +1,7 @@
-const svgStore = require('gulp-svgstore');
-const imagemin = require('gulp-imagemin');
+import svgStore from 'gulp-svgstore';
+import imagemin from 'gulp-imagemin';
 
-module.exports = (gulp, config) => {
+export default (gulp, config) => {
   gulp.task('svg', () =>
     gulp
       .src(config.svg.source)

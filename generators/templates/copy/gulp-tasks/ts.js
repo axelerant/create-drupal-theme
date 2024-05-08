@@ -1,6 +1,6 @@
-const typescript = require('gulp-typescript');
+import typescript from 'gulp-typescript';
 const ts = typescript.createProject('tsconfig.json');
-const sourcemaps = require('gulp-sourcemaps');
+import sourcemaps from 'gulp-sourcemaps';
 
 module.exports = (gulp, config) => {
   gulp.task('ts', () =>

@@ -1,6 +1,6 @@
-const del = require('del');
+import del from 'del';
 
-module.exports = (gulp) => {
+export default (gulp) => {
   gulp.task('clean', function () {
     return del(['dist']);
   });
