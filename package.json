@@ -1,6 +1,6 @@
 {
   "name": "create-drupal-theme",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Create Drupal Theme",
   "homepage": "https://github.com/axelerant/create-drupal-theme",
   "bin": {
