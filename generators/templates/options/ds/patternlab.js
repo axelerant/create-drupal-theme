@@ -1,10 +1,15 @@
-const path = require('path');
-const fs = require('fs');
-const { spawn } = require('child_process');
-const build = require('@pattern-lab/cli/bin/build');
+import path from 'path';
+import { fileURLToPath } from 'url';
+import fs from 'fs';
+import { spawn } from 'child_process';
+import build from '@pattern-lab/cli/bin/build.js';
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
 const config = require('../patternlab-config.json');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-module.exports = (gulp) => {
+export default (gulp) => {
   const jsFile = path.join(__dirname, '../patternlab/_meta/js.twig');
   if (!fs.existsSync(jsFile)) {
     fs.writeFileSync(jsFile, '<!-- inject:js -->\n<!-- endinject -->');

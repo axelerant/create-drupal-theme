@@ -9,7 +9,7 @@
 
 ## Requirements
 
-- [Node.js](https://nodejs.org/) version 14 or above
+- [Node.js](https://nodejs.org/) version 18.20.2 or above
 - [PHP](https://www.php.net/) version 7.2 or above
 - [npm](https://npmjs.com/package/npm)
 - [Yarn](https://yarnpkg.com/getting-started/install)
@@ -118,7 +118,7 @@ The TypeScript files would be placed within the `components` directory. On runni
 
 ### Linting & Code Formatting support
 
-Linting and code formatting support are included, with standard defaults. You can find the configuration in the following files: `.prettierrc`, `.eslintrc`, and `.stylelintrc`.
+Linting and code formatting support are included, with standard defaults. You can find the configuration in the following files: `.prettierrc.json`, `.eslintrc.json`, and `.stylelintrc.json`.
 
 All the `scss`, `css`, `ts`, `js`, `json`, and `yml` files listed under the `components` directory are lint and formatted.
 

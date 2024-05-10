@@ -1,1 +1,12 @@
-@import 'config/*.scss';
+@import 'config/breakpoints';
+@import 'config/colors';
+@import 'config/fonts';
+@import 'config/grid';
+@import 'config/headings';
+@import 'config/icons';
+@import 'config/links';
+@import 'config/lists';
+@import 'config/plugins';
+@import 'config/spacings';
+@import 'config/text';
+@import 'config/z-index';

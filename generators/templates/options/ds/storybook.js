@@ -1,6 +1,6 @@
-const { spawn } = require('child_process');
+import { spawn } from 'child_process';
 
-module.exports = (gulp) => {
+export default (gulp) => {
   gulp.task('sb:build', async () => {
     spawn('./node_modules/.bin/build-storybook', {
       stdio: 'inherit',

@@ -1,7 +1,7 @@
-const path = require('path');
+import path from 'path';
 const componentsNamespace = path.resolve(__dirname, '../dist/components');
 
-module.exports = {
+export default {
   stories: [
     '../components/**/**/*.stories.mdx',
     '../components/**/**/*.stories.@(js|ts)',

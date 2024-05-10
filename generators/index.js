@@ -77,6 +77,7 @@ module.exports = class extends Generator {
       injectJs: ``,
       dsServe: ``,
       dsBuild: ``,
+      dsImport: ``,
       dsTask: ``,
     };
   }
@@ -189,7 +190,7 @@ module.exports = class extends Generator {
     }
 
     if (rtl) {
-      this.rtlValue = `const rtl = require('postcss-rtlcss');
+      this.rtlValue = `import rtl from 'postcss-rtlcss';
 postCSSOptions.push(rtl());`;
       this.deps.push('postcss-rtlcss');
     }
@@ -242,8 +243,10 @@ postCSSOptions.push(rtl());`;
       injectJs: `, 'inject:js'`,
       dsServe: `'pl:serve', `,
       dsBuild: `\n'inject',\n'pl:build',`,
-      dsTask: `'inject',\n'patternlab',`,
+      dsImport: `import inject from './gulp-tasks/inject.js';\nimport patternlab from './gulp-tasks/patternlab.js';`,
+      dsTask: `inject(gulp, config);\npatternlab(gulp, config);`
     };
+
     this.fs.copy(
       this.templatePath('options/ds/copy/**'),
       this.destinationPath(`${this.theme}/`),
@@ -282,6 +285,8 @@ postCSSOptions.push(rtl());`;
       dsServe: `'sb:serve', `,
       dsBuild: `\n'sb:build',`,
       dsTask: `\n'storybook',`,
+      dsImport: `\nimport storybook from './gulp-tasks/storybook.js';`,
+      dsTask: `\nstorybook(gulp, config);`
     };
 
     this.fs.copy(

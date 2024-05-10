@@ -2,7 +2,7 @@ import typescript from 'gulp-typescript';
 const ts = typescript.createProject('tsconfig.json');
 import sourcemaps from 'gulp-sourcemaps';
 
-module.exports = (gulp, config) => {
+export default (gulp, config) => {
   gulp.task('ts', () =>
     gulp
       .src(config.ts.source)

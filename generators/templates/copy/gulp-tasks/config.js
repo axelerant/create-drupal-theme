@@ -7,7 +7,6 @@ export default {
       outputStyle: 'expanded',
       includePaths: ['./node_modules'],
       errLogToConsole: true,
-      importer: require('node-sass-globbing'),
     },
   },
   ts: {
