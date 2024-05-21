@@ -1,4 +1,4 @@
-module.exports = (gulp, config) => {
+export default (gulp, config) => {
   gulp.task('watch:scss', () => {
     gulp.watch(
       ...config.scss.all,

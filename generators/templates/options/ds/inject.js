@@ -1,7 +1,7 @@
-const inject = require('gulp-inject');
-const sort = require('sort-stream');
+import inject from 'gulp-inject';
+import sort from 'sort-stream';
 
-module.exports = (gulp) => {
+export default (gulp) => {
   gulp.task('inject:js', () => {
     const target = gulp.src('patternlab/_meta/js.twig');
     const sources = gulp.src(['dist/components/**/*.js'], { read: false });

@@ -1,20 +1,24 @@
-const gulp = require('gulp');
+import gulp from 'gulp';
+import config from './gulp-tasks/config.js';
 
-const config = require('./gulp-tasks/config');
+import clean from './gulp-tasks/clean.js';
+import scss from './gulp-tasks/scss.js';
+import ts from './gulp-tasks/ts.js'
+import svg from './gulp-tasks/svg.js';
+import pretty from './gulp-tasks/prettier.js';
+import lint from './gulp-tasks/lint.js';
+import images from './gulp-tasks/images.js';
+<%- ds.dsImport %>
+import defaulttask from './gulp-tasks/default.js';
+import watch from './gulp-tasks/watch.js';
 
-const tasks = [
-  'clean',
-  'scss',
-  'ts',
-  'svg',
-  'prettier',
-  'lint',
-  'images',<%- ds.dsTask %>
-  'default',
-  'watch',
-];
-
-tasks.forEach((task) => {
-  const t = require(`./gulp-tasks/${task}`);
-  t(gulp, config);
-});
+clean(gulp, config);
+scss(gulp, config);
+ts(gulp, config);
+svg(gulp, config);
+pretty(gulp, config);
+lint(gulp, config);
+images(gulp, config);
+<%- ds.dsTask %>
+defaulttask(gulp, config);
+watch(gulp, config);

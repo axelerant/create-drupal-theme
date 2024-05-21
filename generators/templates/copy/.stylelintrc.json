@@ -2,6 +2,7 @@
   "configBasedir": ".",
   "extends": ["stylelint-prettier/recommended"],
   "plugins": ["stylelint-scss", "stylelint-prettier"],
+  "customSyntax": "postcss-scss",
   "rules": {
     "prettier/prettier": true,
     "at-rule-no-unknown": null,

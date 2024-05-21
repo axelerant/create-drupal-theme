@@ -1,10 +1,10 @@
-import stylelint from 'gulp-stylelint';
+import stylelint from '@ronilaukkarinen/gulp-stylelint';
 import eslint from 'gulp-eslint-new';
 import gulpIf from 'gulp-if';
 import typescript from 'gulp-typescript';
 const ts = typescript.createProject('tsconfig.json', { noEmit: true });
 
-module.exports = (gulp, config) => {
+export default (gulp, config) => {
   gulp.task('lint:stylelint', () =>
     gulp.src(config.scss.all).pipe(stylelint(config.stylelint.options)),
   );
