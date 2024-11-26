@@ -1,4 +1,4 @@
-import imagemin from 'gulp-imagemin';
+import imagemin, { gifsicle, mozjpeg, optipng } from 'gulp-imagemin';
 
 export default (gulp, config) => {
   gulp.task('images', () =>
@@ -6,9 +6,9 @@ export default (gulp, config) => {
       .src(config.images.source)
       .pipe(
         imagemin([
-          imagemin.gifsicle({ interlaced: true }),
-          imagemin.mozjpeg({ quality: 75, progressive: true }),
-          imagemin.optipng({ optimizationLevel: 5 }),
+          gifsicle({ interlaced: true }),
+          mozjpeg({ quality: 75, progressive: true }),
+          optipng({ optimizationLevel: 5 }),
         ]),
       ),
   );
